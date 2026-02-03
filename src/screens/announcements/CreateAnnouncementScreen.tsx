@@ -185,7 +185,7 @@ export function CreateAnnouncementScreen() {
     const result = announcementSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
-      result.error.errors.forEach((err) => {
+      result.error.issues.forEach((err) => {
         const field = err.path[0] as string;
         fieldErrors[field] = err.message;
       });
