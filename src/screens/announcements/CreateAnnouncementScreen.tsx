@@ -154,9 +154,11 @@ export function CreateAnnouncementScreen() {
     setDestinationCountry('');
   };
 
-  const onDateChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
-    setShowDatePicker(Platform.OS === 'ios');
-    if (selectedDate) setDepartureDate(selectedDate);
+  const onDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
+    setShowDatePicker(false);
+    if (event.type === 'set' && selectedDate) {
+      setDepartureDate(selectedDate);
+    }
   };
 
   const formatDateDisplay = (date: Date) => {
