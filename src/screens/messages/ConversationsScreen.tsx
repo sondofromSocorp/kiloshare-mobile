@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   RefreshControl,
   Platform,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -97,9 +98,16 @@ export function ConversationsScreen() {
         activeOpacity={0.7}
       >
         {/* Avatar */}
-        <View style={[styles.avatar, hasUnread && styles.avatarUnread]}>
-          <Ionicons name="person" size={18} color={colors.white} />
-        </View>
+        {item.other_user?.avatar_url ? (
+          <Image
+            source={{ uri: item.other_user.avatar_url }}
+            style={[styles.avatar, styles.avatarImage]}
+          />
+        ) : (
+          <View style={[styles.avatar, hasUnread && styles.avatarUnread]}>
+            <Ionicons name="person" size={18} color={colors.white} />
+          </View>
+        )}
 
         {/* Content */}
         <View style={styles.content}>
@@ -219,6 +227,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
+  },
+  avatarImage: {
+    backgroundColor: 'transparent',
   },
   avatarUnread: {
     backgroundColor: colors.primary,

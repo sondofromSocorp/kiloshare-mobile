@@ -11,6 +11,7 @@ import {
   Platform,
   Alert,
   Clipboard,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -93,7 +94,7 @@ export function ChatScreen() {
 
       const { data: profile } = await supabase
         .from('profiles')
-        .select('first_name, last_name')
+        .select('first_name, last_name, avatar_url')
         .eq('id', otherId)
         .single();
 
@@ -104,6 +105,7 @@ export function ChatScreen() {
       setOtherUserName(fullName);
 
       const initial = profile?.first_name?.[0]?.toUpperCase() || '?';
+      const avatarUrl = profile?.avatar_url;
 
       navigation.setOptions({
         headerTitle: () => (
@@ -112,9 +114,13 @@ export function ChatScreen() {
             onPress={() => navigation.navigate('PublicProfile', { userId: otherId })}
             activeOpacity={0.7}
           >
-            <View style={headerStyles.avatar}>
-              <Text style={headerStyles.avatarText}>{initial}</Text>
-            </View>
+            {avatarUrl ? (
+              <Image source={{ uri: avatarUrl }} style={headerStyles.avatarImage} />
+            ) : (
+              <View style={headerStyles.avatar}>
+                <Text style={headerStyles.avatarText}>{initial}</Text>
+              </View>
+            )}
             <Text style={headerStyles.headerName} numberOfLines={1}>{firstName}</Text>
           </TouchableOpacity>
         ),
@@ -767,6 +773,11 @@ const headerStyles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  avatarImage: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
   },
   avatarText: {
     color: colors.white,

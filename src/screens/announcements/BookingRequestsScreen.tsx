@@ -9,6 +9,7 @@ import {
   RefreshControl,
   Alert,
   Platform,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -122,9 +123,16 @@ export function BookingRequestsScreen() {
           style={styles.senderRow}
           onPress={() => navigation.navigate('PublicProfile', { userId: item.user_id })}
         >
-          <View style={styles.avatarPlaceholder}>
-            <Ionicons name="person" size={16} color={colors.white} />
-          </View>
+          {item.profiles?.avatar_url ? (
+            <Image
+              source={{ uri: item.profiles.avatar_url }}
+              style={styles.avatarImage}
+            />
+          ) : (
+            <View style={styles.avatarPlaceholder}>
+              <Ionicons name="person" size={16} color={colors.white} />
+            </View>
+          )}
           <View style={styles.senderInfo}>
             <Text style={styles.senderName}>{senderName}</Text>
             <Text style={styles.requestDate}>
@@ -291,6 +299,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  avatarImage: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
   },
   senderInfo: {
     flex: 1,

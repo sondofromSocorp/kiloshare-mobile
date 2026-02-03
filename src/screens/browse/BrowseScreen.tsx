@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   RefreshControl,
   Platform,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -149,9 +150,16 @@ export function BrowseScreen() {
               navigation.navigate('PublicProfile', { userId: item.user_id });
             }}
           >
-            <View style={styles.avatarPlaceholder}>
-              <Ionicons name="person" size={14} color={colors.white} />
-            </View>
+            {item.profiles?.avatar_url ? (
+              <Image
+                source={{ uri: item.profiles.avatar_url }}
+                style={styles.avatarImage}
+              />
+            ) : (
+              <View style={styles.avatarPlaceholder}>
+                <Ionicons name="person" size={14} color={colors.white} />
+              </View>
+            )}
             <Text style={styles.travelerName}>{travelerName}</Text>
           </TouchableOpacity>
           <Text style={styles.priceText}>{item.price_per_kg}€/kg</Text>
@@ -475,6 +483,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  avatarImage: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
   },
   travelerName: {
     fontSize: 13,

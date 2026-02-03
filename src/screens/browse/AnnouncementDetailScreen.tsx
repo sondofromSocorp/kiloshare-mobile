@@ -9,6 +9,7 @@ import {
   Alert,
   TextInput,
   Platform,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -228,9 +229,16 @@ export function AnnouncementDetailScreen() {
         activeOpacity={0.7}
       >
         <View style={styles.travelerInfo}>
-          <View style={styles.avatarPlaceholder}>
-            <Ionicons name="person" size={20} color={colors.white} />
-          </View>
+          {announcement.profiles?.avatar_url ? (
+            <Image
+              source={{ uri: announcement.profiles.avatar_url }}
+              style={styles.avatarImage}
+            />
+          ) : (
+            <View style={styles.avatarPlaceholder}>
+              <Ionicons name="person" size={20} color={colors.white} />
+            </View>
+          )}
           <View>
             <Text style={styles.travelerLabel}>{t('announcements.traveler')}</Text>
             <Text style={styles.travelerName}>{travelerName}</Text>
@@ -521,6 +529,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  avatarImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
   travelerLabel: {
     fontSize: 12,
