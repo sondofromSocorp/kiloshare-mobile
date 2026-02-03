@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -19,6 +19,8 @@ import { colors } from '../../theme/colors';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../lib/auth';
 import { announcementSchema } from '../../lib/validation';
+import { searchCities } from '../../lib/airlabs';
+import type { City } from '../../lib/types';
 import type { AnnouncementsStackParamList } from '../../navigation/AnnouncementsStack';
 
 type CreateRouteProp = RouteProp<AnnouncementsStackParamList, 'CreateAnnouncement'>;
@@ -42,10 +44,18 @@ export function CreateAnnouncementScreen() {
   const [pricePerKg, setPricePerKg] = useState('');
   const [complementaryInfo, setComplementaryInfo] = useState('');
 
+  const [departureSearch, setDepartureSearch] = useState('');
+  const [destinationSearch, setDestinationSearch] = useState('');
+  const [departureCities, setDepartureCities] = useState<City[]>([]);
+  const [destinationCities, setDestinationCities] = useState<City[]>([]);
+
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(isEdit);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const departureTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const destinationTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const fetchAnnouncement = useCallback(async () => {
     if (!editId) return;
@@ -61,8 +71,10 @@ export function CreateAnnouncementScreen() {
         setTitle(data.title);
         setDepartureCity(data.departure_city);
         setDepartureCountry(data.departure_country);
+        setDepartureSearch(data.departure_city);
         setDestinationCity(data.destination_city);
         setDestinationCountry(data.destination_country);
+        setDestinationSearch(data.destination_city);
         setDepartureDate(new Date(data.departure_date));
         setAvailableSpace(String(data.available_space));
         setPricePerKg(String(data.price_per_kg));
@@ -79,6 +91,68 @@ export function CreateAnnouncementScreen() {
   useEffect(() => {
     if (isEdit) fetchAnnouncement();
   }, [isEdit, fetchAnnouncement]);
+
+  // Debounced search for departure cities
+  useEffect(() => {
+    if (departureTimer.current) clearTimeout(departureTimer.current);
+    if (departureSearch.length < 2) {
+      setDepartureCities([]);
+      return;
+    }
+    departureTimer.current = setTimeout(async () => {
+      try {
+        const cities = await searchCities(departureSearch);
+        setDepartureCities(cities);
+      } catch {
+        setDepartureCities([]);
+      }
+    }, 300);
+    return () => { if (departureTimer.current) clearTimeout(departureTimer.current); };
+  }, [departureSearch]);
+
+  // Debounced search for destination cities
+  useEffect(() => {
+    if (destinationTimer.current) clearTimeout(destinationTimer.current);
+    if (destinationSearch.length < 2) {
+      setDestinationCities([]);
+      return;
+    }
+    destinationTimer.current = setTimeout(async () => {
+      try {
+        const cities = await searchCities(destinationSearch);
+        setDestinationCities(cities);
+      } catch {
+        setDestinationCities([]);
+      }
+    }, 300);
+    return () => { if (destinationTimer.current) clearTimeout(destinationTimer.current); };
+  }, [destinationSearch]);
+
+  const handleDepartureSelect = (city: City) => {
+    setDepartureCity(city.name);
+    setDepartureCountry(city.country_code);
+    setDepartureSearch(city.name);
+    setDepartureCities([]);
+  };
+
+  const handleDestinationSelect = (city: City) => {
+    setDestinationCity(city.name);
+    setDestinationCountry(city.country_code);
+    setDestinationSearch(city.name);
+    setDestinationCities([]);
+  };
+
+  const onDepartureSearchChange = (text: string) => {
+    setDepartureSearch(text);
+    setDepartureCity('');
+    setDepartureCountry('');
+  };
+
+  const onDestinationSearchChange = (text: string) => {
+    setDestinationSearch(text);
+    setDestinationCity('');
+    setDestinationCountry('');
+  };
 
   const onDateChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
     setShowDatePicker(Platform.OS === 'ios');
@@ -181,43 +255,71 @@ export function CreateAnnouncementScreen() {
 
         {/* Departure city + country */}
         <Text style={styles.label}>{t('announcements.form.departureCity')}</Text>
-        <View style={styles.row}>
+        <View style={styles.autocompleteContainer}>
           <TextInput
-            style={[styles.input, styles.flex, errors.departure_city && styles.inputError]}
+            style={[styles.input, errors.departure_city && styles.inputError]}
             placeholder={t('announcements.form.departureCityPlaceholder')}
             placeholderTextColor={colors.gray400}
-            value={departureCity}
-            onChangeText={setDepartureCity}
+            value={departureSearch}
+            onChangeText={onDepartureSearchChange}
           />
+          {departureCities.length > 0 && (
+            <View style={styles.suggestionsContainer}>
+              {departureCities.map((city) => (
+                <TouchableOpacity
+                  key={city.city_code}
+                  style={styles.suggestionItem}
+                  onPress={() => handleDepartureSelect(city)}
+                >
+                  <Ionicons name="airplane-outline" size={16} color={colors.primary} />
+                  <Text style={styles.suggestionText}>{city.name}</Text>
+                  <Text style={styles.suggestionCountry}>{city.country_code}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
         </View>
         {errors.departure_city && <Text style={styles.errorText}>{errors.departure_city}</Text>}
-        <TextInput
-          style={[styles.input, styles.smallMargin, errors.departure_country && styles.inputError]}
-          placeholder={t('profile.country')}
-          placeholderTextColor={colors.gray400}
-          value={departureCountry}
-          onChangeText={setDepartureCountry}
-        />
-        {errors.departure_country && <Text style={styles.errorText}>{errors.departure_country}</Text>}
+        {departureCountry !== '' && (
+          <View style={styles.countryBadge}>
+            <Ionicons name="location-outline" size={14} color={colors.primary} />
+            <Text style={styles.countryBadgeText}>{departureCountry}</Text>
+          </View>
+        )}
 
         {/* Destination city + country */}
         <Text style={styles.label}>{t('announcements.form.destinationCity')}</Text>
-        <TextInput
-          style={[styles.input, errors.destination_city && styles.inputError]}
-          placeholder={t('announcements.form.destinationCityPlaceholder')}
-          placeholderTextColor={colors.gray400}
-          value={destinationCity}
-          onChangeText={setDestinationCity}
-        />
+        <View style={styles.autocompleteContainer}>
+          <TextInput
+            style={[styles.input, errors.destination_city && styles.inputError]}
+            placeholder={t('announcements.form.destinationCityPlaceholder')}
+            placeholderTextColor={colors.gray400}
+            value={destinationSearch}
+            onChangeText={onDestinationSearchChange}
+          />
+          {destinationCities.length > 0 && (
+            <View style={styles.suggestionsContainer}>
+              {destinationCities.map((city) => (
+                <TouchableOpacity
+                  key={city.city_code}
+                  style={styles.suggestionItem}
+                  onPress={() => handleDestinationSelect(city)}
+                >
+                  <Ionicons name="airplane-outline" size={16} color={colors.primary} />
+                  <Text style={styles.suggestionText}>{city.name}</Text>
+                  <Text style={styles.suggestionCountry}>{city.country_code}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+        </View>
         {errors.destination_city && <Text style={styles.errorText}>{errors.destination_city}</Text>}
-        <TextInput
-          style={[styles.input, styles.smallMargin, errors.destination_country && styles.inputError]}
-          placeholder={t('profile.country')}
-          placeholderTextColor={colors.gray400}
-          value={destinationCountry}
-          onChangeText={setDestinationCountry}
-        />
-        {errors.destination_country && <Text style={styles.errorText}>{errors.destination_country}</Text>}
+        {destinationCountry !== '' && (
+          <View style={styles.countryBadge}>
+            <Ionicons name="location-outline" size={14} color={colors.primary} />
+            <Text style={styles.countryBadgeText}>{destinationCountry}</Text>
+          </View>
+        )}
 
         {/* Departure date */}
         <Text style={styles.label}>{t('announcements.form.departureDate')}</Text>
@@ -357,6 +459,62 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     gap: 10,
+  },
+  autocompleteContainer: {
+    position: 'relative',
+    zIndex: 10,
+  },
+  suggestionsContainer: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.gray200,
+    borderRadius: 10,
+    marginTop: 4,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: { elevation: 4 },
+    }),
+  },
+  suggestionItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray100,
+    gap: 8,
+  },
+  suggestionText: {
+    flex: 1,
+    fontSize: 14,
+    color: colors.gray900,
+  },
+  suggestionCountry: {
+    fontSize: 12,
+    color: colors.gray500,
+    fontWeight: '600',
+  },
+  countryBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    marginTop: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    backgroundColor: colors.gray50,
+    borderRadius: 6,
+    alignSelf: 'flex-start',
+  },
+  countryBadgeText: {
+    fontSize: 13,
+    color: colors.gray700,
+    fontWeight: '500',
   },
   dateButton: {
     flexDirection: 'row',
