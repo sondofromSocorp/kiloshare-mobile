@@ -1,5 +1,7 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Ionicons } from '@expo/vector-icons';
 import { ProfileScreen } from '../screens/profile/ProfileScreen';
 import { EditProfileScreen } from '../screens/profile/EditProfileScreen';
 import { PublicProfileScreen } from '../screens/profile/PublicProfileScreen';
@@ -19,6 +21,7 @@ export function ProfileStack() {
       screenOptions={{
         headerTintColor: colors.primary,
         headerTitleStyle: { color: colors.gray900 },
+        headerBackTitle: '',
       }}
     >
       <Stack.Screen
@@ -29,12 +32,28 @@ export function ProfileStack() {
       <Stack.Screen
         name="EditProfile"
         component={EditProfileScreen}
-        options={{ title: '' }}
+        options={({ navigation }) => ({
+          title: '',
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={8}>
+              <Ionicons name="chevron-back" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="PublicProfile"
         component={PublicProfileScreen}
-        options={{ title: '' }}
+        options={({ navigation }) => ({
+          title: '',
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={8}>
+              <Ionicons name="chevron-back" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
       />
     </Stack.Navigator>
   );

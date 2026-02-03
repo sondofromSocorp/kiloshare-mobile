@@ -1,5 +1,7 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Ionicons } from '@expo/vector-icons';
 import { MyAnnouncementsScreen } from '../screens/announcements/MyAnnouncementsScreen';
 import { MyBookingsScreen } from '../screens/announcements/MyBookingsScreen';
 import { CreateAnnouncementScreen } from '../screens/announcements/CreateAnnouncementScreen';
@@ -23,6 +25,7 @@ export function AnnouncementsStack() {
       screenOptions={{
         headerTintColor: colors.primary,
         headerTitleStyle: { color: colors.gray900 },
+        headerBackTitle: '',
       }}
     >
       <Stack.Screen
@@ -38,17 +41,41 @@ export function AnnouncementsStack() {
       <Stack.Screen
         name="CreateAnnouncement"
         component={CreateAnnouncementScreen}
-        options={{ title: '' }}
+        options={({ navigation }) => ({
+          title: '',
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={8}>
+              <Ionicons name="chevron-back" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="BookingRequests"
         component={BookingRequestsScreen}
-        options={{ title: '' }}
+        options={({ navigation }) => ({
+          title: '',
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={8}>
+              <Ionicons name="chevron-back" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="PublicProfile"
         component={PublicProfileScreen}
-        options={{ title: '' }}
+        options={({ navigation }) => ({
+          title: '',
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={8}>
+              <Ionicons name="chevron-back" size={24} color={colors.primary} />
+            </TouchableOpacity>
+          ),
+        })}
       />
     </Stack.Navigator>
   );

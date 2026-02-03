@@ -154,11 +154,23 @@ export function CreateAnnouncementScreen() {
     setDestinationCountry('');
   };
 
+  const [tempDate, setTempDate] = useState(departureDate);
+
   const onDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    setShowDatePicker(false);
-    if (event.type === 'set' && selectedDate) {
-      setDepartureDate(selectedDate);
+    if (Platform.OS === 'android') {
+      setShowDatePicker(false);
+      if (event.type === 'set' && selectedDate) {
+        setDepartureDate(selectedDate);
+      }
+    } else {
+      // iOS spinner: update temp date, user confirms with button
+      if (selectedDate) setTempDate(selectedDate);
     }
+  };
+
+  const confirmIOSDate = () => {
+    setDepartureDate(tempDate);
+    setShowDatePicker(false);
   };
 
   const formatDateDisplay = (date: Date) => {
@@ -327,7 +339,7 @@ export function CreateAnnouncementScreen() {
         <Text style={styles.label}>{t('announcements.form.departureDate')}</Text>
         <TouchableOpacity
           style={[styles.input, styles.dateButton]}
-          onPress={() => setShowDatePicker(true)}
+          onPress={() => { setTempDate(departureDate); setShowDatePicker(true); }}
         >
           <Ionicons name="calendar-outline" size={18} color={colors.primary} />
           <Text style={styles.dateText}>{formatDateDisplay(departureDate)}</Text>
@@ -335,13 +347,25 @@ export function CreateAnnouncementScreen() {
         {errors.departure_date && <Text style={styles.errorText}>{errors.departure_date}</Text>}
 
         {showDatePicker && (
-          <DateTimePicker
-            value={departureDate}
-            mode="date"
-            display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-            minimumDate={new Date()}
-            onChange={onDateChange}
-          />
+          <>
+            <DateTimePicker
+              value={Platform.OS === 'ios' ? tempDate : departureDate}
+              mode="date"
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              minimumDate={new Date()}
+              onChange={onDateChange}
+            />
+            {Platform.OS === 'ios' && (
+              <View style={styles.iosDateActions}>
+                <TouchableOpacity onPress={() => setShowDatePicker(false)}>
+                  <Text style={styles.iosDateCancel}>{t('announcements.form.cancel')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={confirmIOSDate}>
+                  <Text style={styles.iosDateConfirm}>{t('announcements.form.submit')}</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </>
         )}
 
         {/* Available space */}
@@ -517,6 +541,22 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.gray700,
     fontWeight: '500',
+  },
+  iosDateActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  iosDateCancel: {
+    fontSize: 15,
+    color: colors.gray500,
+    fontWeight: '600',
+  },
+  iosDateConfirm: {
+    fontSize: 15,
+    color: colors.primary,
+    fontWeight: '700',
   },
   dateButton: {
     flexDirection: 'row',
