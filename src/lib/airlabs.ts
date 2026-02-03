@@ -8,8 +8,6 @@ const BASE_URL = 'https://airlabs.co/api/v9';
 export async function searchAirports(query: string): Promise<Airport[]> {
   if (!query || query.length < 2) return [];
 
-  console.log('[AirLabs] Searching for:', query, '| API key configured:', !!API_KEY);
-
   const searchTerm = query.toLowerCase().trim();
 
   try {
