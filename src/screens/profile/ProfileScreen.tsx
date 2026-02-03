@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Alert,
   Platform,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -103,9 +104,13 @@ export function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Header card */}
         <View style={styles.headerCard}>
-          <View style={styles.avatarLarge}>
-            <Ionicons name="person" size={36} color={colors.white} />
-          </View>
+          {profile?.avatar_url ? (
+            <Image source={{ uri: profile.avatar_url }} style={styles.avatarImage} />
+          ) : (
+            <View style={styles.avatarLarge}>
+              <Ionicons name="person" size={36} color={colors.white} />
+            </View>
+          )}
           <Text style={styles.displayName}>{displayName || profile?.username || user?.email}</Text>
           {profile?.username && displayName && (
             <Text style={styles.username}>@{profile.username}</Text>
@@ -257,6 +262,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 12,
+  },
+  avatarImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     marginBottom: 12,
   },
   displayName: {

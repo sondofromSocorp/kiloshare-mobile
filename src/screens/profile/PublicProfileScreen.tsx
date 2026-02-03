@@ -6,6 +6,7 @@ import {
   ScrollView,
   ActivityIndicator,
   Platform,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -89,9 +90,13 @@ export function PublicProfileScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       {/* Header */}
       <View style={styles.headerCard}>
-        <View style={styles.avatarLarge}>
-          <Ionicons name="person" size={36} color={colors.white} />
-        </View>
+        {profile.avatar_url ? (
+          <Image source={{ uri: profile.avatar_url }} style={styles.avatarImage} />
+        ) : (
+          <View style={styles.avatarLarge}>
+            <Ionicons name="person" size={36} color={colors.white} />
+          </View>
+        )}
         <Text style={styles.displayName}>{displayName || t('chat.unknownUser')}</Text>
 
         {/* Role badge */}
@@ -255,6 +260,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 12,
+  },
+  avatarImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     marginBottom: 12,
   },
   displayName: {
