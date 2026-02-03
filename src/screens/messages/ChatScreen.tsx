@@ -308,7 +308,7 @@ export function ChatScreen() {
     // Traveler: confirm reception
     if (isTraveler && handoffStep === 'sender_confirmed') {
       return (
-        <TouchableOpacity style={styles.handoffBanner} onPress={handleHandoffAction} disabled={handoffLoading}>
+        <TouchableOpacity style={styles.handoffBannerGreen} onPress={handleHandoffAction} disabled={handoffLoading}>
           {handoffLoading ? (
             <ActivityIndicator size="small" color={colors.white} />
           ) : (
@@ -610,6 +610,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 8,
     backgroundColor: colors.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+  handoffBannerGreen: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    backgroundColor: colors.green600,
     paddingVertical: 12,
     paddingHorizontal: 16,
   },
