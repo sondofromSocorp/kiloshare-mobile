@@ -1,0 +1,664 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "howItWorks": "Comment ça marche",
+    "trustSecurity": "Confiance & Sécurité",
+    "ourVision": "Notre Vision",
+    "contact": "Nous contacter",
+    "viewAnnouncements": "Parcourir les annonces",
+    "myAnnouncements": "Mes annonces",
+    "createAccount": "Créer un compte",
+    "login": "Se connecter",
+    "profile": "Mon Profil",
+    "signOut": "Se déconnecter",
+    "admin": "Administration",
+    "messages": "Messages",
+    "myTrips": "Mes trajets",
+    "myBookings": "Mes demandes"
+  },
+  "pages": {
+    "howItWorks": {
+      "title": "Comment fonctionne Yemalo",
+      "subtitle": "Découvrez comment Yemalo révolutionne le co-transport en connectant les expéditeurs avec des voyageurs allant dans la même direction. Apprenez chaque étape et les avantages pour les deux parties.",
+      "steps": {
+        "step1": {
+          "title": "Étape 1 : Inscription & Profil",
+          "description": "Créez votre compte, complétez votre profil et vérifiez votre identité en téléchargeant une pièce d'identité. Un profil vérifié inspire confiance à la communauté."
+        },
+        "step2": {
+          "title": "Étape 2 : Publiez ou Réservez",
+          "description": "Voyageur ? Publiez une annonce avec votre trajet, date et kilos disponibles. Expéditeur ? Parcourez les annonces et envoyez une demande de réservation en précisant le poids souhaité."
+        },
+        "step3": {
+          "title": "Étape 3 : Échangez & Livrez",
+          "description": "Une fois la réservation acceptée, échangez par chat pour convenir du rendez-vous. Remettez le colis, confirmez la prise en charge et validez la livraison avec le code sécurisé."
+        }
+      },
+      "benefits": {
+        "title": "Avantages pour les utilisateurs",
+        "easyShipping": {
+          "title": "Envoi facile",
+          "description": "Envoyez facilement des colis en utilisant l'espace excédentaire des voyageurs."
+        },
+        "fastDelivery": {
+          "title": "Livraison rapide",
+          "description": "Recevez vos articles plus rapidement qu'avec les méthodes d'expédition traditionnelles."
+        },
+        "secure": {
+          "title": "Sécurisé & Vérifié",
+          "description": "Tous les utilisateurs sont vérifiés pour une expérience sûre et fiable."
+        },
+        "affordable": {
+          "title": "Tarifs abordables",
+          "description": "Économisez par rapport aux services de coursier standards."
+        }
+      },
+      "cta": {
+        "title": "Prêt à commencer ?",
+        "subtitle": "Rejoignez notre communauté de voyageurs et d'expéditeurs. Commencez à expédier plus intelligemment dès aujourd'hui.",
+        "createAccount": "Créer un compte",
+        "browseTrips": "Parcourir les trajets"
+      },
+      "countries": "Pays"
+    },
+    "trustSecurity": {
+      "title": "Confiance & Sécurité chez Yemalo",
+      "subtitle": "Engagement envers des transactions sécurisées et des vérifications d'utilisateurs pour une expérience plus sûre.",
+      "learnMore": "En savoir plus",
+      "features": {
+        "safeParcel": {
+          "title": "Manipulation sûre des colis",
+          "description": "Vos colis sont manipulés avec soin. Tous les colis sont suivis à chaque étape pour votre tranquillité d'esprit."
+        },
+        "escrow": {
+          "title": "Système de paiement séquestre",
+          "description": "Notre système de paiement sécurisé protège les expéditeurs et les voyageurs. Les paiements sont conservés en sécurité jusqu'à confirmation de la livraison."
+        },
+        "verification": {
+          "title": "Vérification des utilisateurs",
+          "description": "Nous vérifions les utilisateurs avec une vérification d'identité pour plus de sécurité. Seuls les utilisateurs vérifiés peuvent expédier et recevoir."
+        }
+      },
+      "badges": {
+        "ssl": "Cryptage SSL",
+        "monitoring": "Surveillance 24/7",
+        "dataProtection": "Protection des données",
+        "verifiedUsers": "Utilisateurs vérifiés"
+      },
+      "testimonials": {
+        "title": "Témoignages",
+        "testimonial1": {
+          "quote": "Yemalo a transformé la façon dont j'envoie des colis chez moi. Le système de vérification me donne une confiance totale.",
+          "name": "Marie Koffi",
+          "route": "Paris - Abidjan"
+        },
+        "testimonial2": {
+          "quote": "Le système de séquestre me donne la tranquillité d'esprit. Je sais que mon paiement est sécurisé jusqu'à l'arrivée de mon colis.",
+          "name": "Oumar Diallo",
+          "route": "Lyon - Dakar"
+        },
+        "testimonial3": {
+          "quote": "La vérification des utilisateurs a renforcé ma confiance dans la plateforme. Je me sens en sécurité pour me connecter avec d'autres utilisateurs.",
+          "name": "Sarah Mensah",
+          "route": "Bruxelles - Accra"
+        }
+      }
+    },
+    "ourVision": {
+      "title": "Notre Vision Ambitieuse",
+      "subtitle": "Yemalo vise à être le pont logistique de premier plan entre l'Europe et l'Afrique, favorisant la croissance économique, les connexions humaines et assurant la sécurité dans toutes les opérations.",
+      "pillars": {
+        "economic": {
+          "title": "Économique",
+          "description": "Nous nous efforçons de créer des opportunités lucratives en connectant voyageurs et expéditeurs, permettant des voyages rentables."
+        },
+        "safe": {
+          "title": "Sûr",
+          "description": "La sécurité est primordiale dans toutes nos opérations. Nous assurons des transactions sécurisées et des utilisateurs vérifiés."
+        },
+        "community": {
+          "title": "Communauté",
+          "description": "Construire une communauté connectée de voyageurs et d'expéditeurs partageant les mêmes valeurs."
+        }
+      },
+      "mission": {
+        "badge": "Notre Mission",
+        "title": "Connecter les communautés, un colis à la fois",
+        "description": "Nous croyons que chaque voyage peut créer une opportunité. En connectant les voyageurs ayant de l'espace excédentaire dans leurs bagages avec des personnes devant envoyer des colis, nous créons une situation gagnant-gagnant qui profite à tous.",
+        "points": {
+          "carbon": "Réduire l'empreinte carbone grâce à la logistique partagée",
+          "economic": "Créer des opportunités économiques pour les voyageurs",
+          "trust": "Construire la confiance à travers des communautés vérifiées"
+        }
+      },
+      "community": {
+        "title": "Engagement communautaire",
+        "subtitle": "Nos itinéraires les plus actifs. Des contributeurs généreux aux petites entreprises locales qui ont trouvé des avantages dans cette plateforme collaborative.",
+        "growing": {
+          "title": "Grandir ensemble",
+          "description": "Nous sommes fiers de voir comment notre communauté a grandi et a aidé les familles à rester connectées à travers les continents."
+        },
+        "business": {
+          "title": "Soutenir les entreprises locales",
+          "description": "\"Yemalo a transformé notre façon de faire des affaires avec l'Europe. Pratique et efficace.\" - Beauty Fashion"
+        }
+      },
+      "stats": {
+        "activeUsers": "Utilisateurs actifs",
+        "packagesDelivered": "Colis livrés",
+        "countries": "Pays",
+        "userRating": "Note utilisateur"
+      }
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "subtitle": "Vous avez des questions ou besoin d'aide ? Nous sommes là pour vous. Contactez-nous et nous vous répondrons dans les plus brefs délais.",
+      "info": {
+        "email": "Email",
+        "phone": "Téléphone",
+        "hours": "Horaires",
+        "hoursValue": "Lun-Ven 9h-18h CET"
+      },
+      "form": {
+        "title": "Formulaire de contact",
+        "name": "Nom",
+        "namePlaceholder": "Votre nom",
+        "email": "Email",
+        "emailPlaceholder": "votre@email.com",
+        "subject": "Sujet",
+        "subjectPlaceholder": "Sélectionnez un sujet",
+        "subjects": {
+          "general": "Demande générale",
+          "support": "Support technique",
+          "billing": "Question facturation",
+          "partnership": "Partenariat"
+        },
+        "message": "Message",
+        "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+        "send": "Envoyer le message",
+        "success": "Message envoyé ! Nous vous répondrons bientôt."
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "q1": {
+          "question": "Comment puis-je suivre mon colis ?",
+          "answer": "Une fois votre colis accepté par un voyageur, vous pouvez suivre son statut via votre tableau de bord. Vous recevrez des notifications à chaque étape du trajet."
+        },
+        "q2": {
+          "question": "Quels articles sont interdits à l'expédition ?",
+          "answer": "Les articles interdits comprennent les matières dangereuses, les substances illégales, les armes, les aliments périssables et les articles violant les réglementations douanières. Veuillez consulter notre liste complète avant d'expédier."
+        },
+        "q3": {
+          "question": "Comment fonctionne le système de paiement ?",
+          "answer": "Nous utilisons un système de séquestre sécurisé. L'expéditeur paie lors de la réservation, et le paiement est conservé en sécurité jusqu'à ce que le voyageur confirme la livraison. Cela protège les deux parties."
+        },
+        "q4": {
+          "question": "Que faire si mon colis est endommagé ou perdu ?",
+          "answer": "Tous les envois sont couverts par notre politique de protection. En cas de dommage ou de perte, veuillez contacter immédiatement notre équipe support et nous vous aiderons à résoudre le problème."
+        },
+        "q5": {
+          "question": "Comment devenir un voyageur vérifié ?",
+          "answer": "Pour être vérifié, complétez votre profil, téléchargez une pièce d'identité valide et passez notre processus de vérification. Cela prend généralement 24-48 heures."
+        }
+      }
+    },
+    "home": {
+      "welcome": "Bienvenue sur Yemalo ! Complétez votre profil pour commencer.",
+      "completeProfile": "Compléter le profil",
+      "stats": {
+        "activeUsers": "Utilisateurs actifs",
+        "packagesDelivered": "Colis livrés",
+        "countries": "Pays",
+        "userRating": "Note utilisateur"
+      },
+      "cta": {
+        "title": "Prêt à commencer ?",
+        "subtitle": "Rejoignez notre communauté de voyageurs et d'expéditeurs. Commencez à expédier plus intelligemment dès aujourd'hui.",
+        "createAccount": "Créer un compte",
+        "browseTrips": "Parcourir les trajets"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "La solution de transport collaborative",
+    "company": "Entreprise",
+    "about": "À propos",
+    "support": "Support",
+    "contactUs": "Nous contacter",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "copyright": "© 2025 Yemalo. Tous droits réservés.",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "services": {
+      "title": "Services",
+      "howItWorks": "Comment ça marche",
+      "pricing": "Tarifs",
+      "insurance": "Assurance",
+      "faq": "FAQ"
+    },
+    "legal": {
+      "title": "Légal",
+      "terms": "Conditions générales",
+      "privacy": "Politique de confidentialité",
+      "legalNotice": "Mentions légales"
+    }
+  },
+  "hero": {
+    "title": "Voyagez utile.\nTransportez malin.",
+    "description": "Rentabilisez vos voyages en transportant des colis dans vos bagages. Économique et écologique !",
+    "sendButton": "Envoyer un colis",
+    "viewButton": "Voir les trajets disponibles"
+  },
+  "features": {
+    "delivery": {
+      "title": "Livraison économique",
+      "description": "Jusqu'à 80% moins cher qu'un envoi traditionnel grâce aux kilos disponibles des voyageurs."
+    },
+    "insurance": {
+      "title": "Sécurité garantie",
+      "description": "Tous les envois sont assurés ! Couverture jusqu'à 5000€ pour une sécurité maximale."
+    },
+    "satisfaction": {
+      "title": "Communauté de confiance",
+      "description": "Plus de 400 000 voyageurs satisfaits nous notent 4,7/5 ⭐"
+    }
+  },
+  "testimonials": {
+    "title": "Ce que disent nos utilisateurs",
+    "subtitle": "4,7/5 étoiles sur plus de 400 000 avis vérifiés ❤️"
+  },
+  "auth": {
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Rejoignez des milliers de voyageurs",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "votre@email.com",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+      "submit": "Créer mon compte",
+      "alreadyHaveAccount": "Vous avez déjà un compte ?",
+      "login": "Se connecter",
+      "success": "Compte créé avec succès ! Redirection en cours...",
+      "errors": {
+        "userExists": "Un compte existe déjà avec cette adresse e-mail",
+        "generic": "Une erreur est survenue lors de la création du compte",
+        "serviceUnavailable": "Service temporairement indisponible. Veuillez réessayer plus tard."
+      }
+    },
+    "login": {
+      "title": "Se connecter",
+      "subtitle": "Accédez à votre espace personnel",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "forgotPassword": "Mot de passe oublié ?",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "register": "Créer un compte",
+      "continueWithGoogle": "Continuer avec Google",
+      "continueWithFacebook": "Continuer avec Facebook",
+      "orContinueWith": "Ou continuer avec",
+      "errors": {
+        "generic": "Une erreur est survenue lors de la connexion",
+        "serviceUnavailable": "Service temporairement indisponible. Veuillez réessayer plus tard.",
+        "retry": "Réessayer"
+      }
+    },
+    "forgotPassword": {
+      "title": "Mot de passe oublié",
+      "description": "Entrez votre adresse e-mail pour recevoir un lien de réinitialisation",
+      "email": "Adresse e-mail",
+      "submit": "Envoyer le lien",
+      "success": "E-mail envoyé !",
+      "checkEmail": "Vérifiez votre boîte e-mail pour le lien de réinitialisation",
+      "backToLogin": "Retour à la connexion",
+      "errors": {
+        "generic": "Une erreur est survenue"
+      }
+    },
+    "resetPassword": {
+      "title": "Réinitialiser le mot de passe",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "submit": "Réinitialiser",
+      "success": "Mot de passe réinitialisé avec succès !",
+      "redirecting": "Redirection vers la page de connexion...",
+      "tryAgain": "Demander un nouveau lien",
+      "errors": {
+        "invalidLink": "Lien de réinitialisation invalide ou expiré",
+        "generic": "Une erreur est survenue"
+      }
+    }
+  },
+  "profile": {
+    "title": "Mon profil",
+    "subtitle": "Gérez vos informations personnelles",
+    "edit": "Modifier",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "username": "Nom d'utilisateur",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "phone": "Téléphone",
+    "streetAddress": "Adresse",
+    "streetAddressPlaceholder": "123 rue de la Paix",
+    "postalCode": "Code postal",
+    "postalCodePlaceholder": "75001",
+    "city": "Ville",
+    "cityPlaceholder": "Paris",
+    "country": "Pays",
+    "selectCountry": "Sélectionner un pays",
+    "favorites": "Mes favoris",
+    "noFavorites": "Vous n'avez pas encore de favoris",
+    "noFavoritesSubtitle": "Parcourez les annonces et ajoutez-en à vos favoris",
+    "updateSuccess": "Profil mis à jour avec succès",
+    "errors": {
+      "loadFailed": "Impossible de charger le profil",
+      "updateFailed": "Impossible de mettre à jour le profil",
+      "usernameTaken": "Ce nom d'utilisateur est déjà pris",
+      "avatarUploadFailed": "Impossible de télécharger l'avatar",
+      "avatarDeleteFailed": "Impossible de supprimer l'avatar"
+    }
+  },
+  "idVerification": {
+    "title": "Vérification d'identité",
+    "subtitle": "Téléchargez une pièce d'identité pour sécuriser votre compte",
+    "documentType": {
+      "national_id": "Carte d'identité",
+      "passport": "Passeport"
+    },
+    "dropHere": "Déposez votre document ici",
+    "dragAndDrop": "Glissez-déposez votre document ou cliquez pour sélectionner",
+    "fileRequirements": "JPG, PNG ou PDF - Maximum 5MB",
+    "processing": "Traitement du document en cours...",
+    "dataExtracted": "Données extraites avec succès",
+    "status": {
+      "pending": "En attente",
+      "approved": "Approuvé",
+      "rejected": "Rejeté"
+    },
+    "errors": {
+      "fileTooLarge": "Le fichier est trop volumineux (maximum 5MB)",
+      "uploadFailed": "Échec du téléchargement"
+    }
+  },
+  "admin": {
+    "verification": {
+      "title": "Administration - Vérification des identités",
+      "subtitle": "Gérer les demandes de vérification d'identité",
+      "searchPlaceholder": "Rechercher par nom ou e-mail...",
+      "filters": {
+        "all": "Tous",
+        "pending": "En attente",
+        "approved": "Approuvés",
+        "rejected": "Rejetés"
+      },
+      "status": {
+        "pending": "En attente",
+        "approved": "Approuvé",
+        "rejected": "Rejeté"
+      },
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "rejectionReason": "Raison du rejet",
+      "rejectionReasonPlaceholder": "Expliquez pourquoi ce document est rejeté...",
+      "confirmReject": "Confirmer le rejet",
+      "cancel": "Annuler",
+      "noDocuments": "Aucun document à vérifier",
+      "loading": "Chargement...",
+      "errors": {
+        "loadFailed": "Impossible de charger les documents",
+        "verificationFailed": "Échec de la vérification",
+        "rejectionReasonRequired": "Une raison de rejet est requise"
+      }
+    }
+  },
+  "announcements": {
+    "title": "Mes annonces de transport",
+    "subtitle": "Gérez vos offres de transport",
+    "createNew": "Créer une nouvelle annonce",
+    "noAnnouncements": "Aucune annonce créée",
+    "noAnnouncementsSubtitle": "Commencez par créer votre première annonce de transport",
+    "remainingSpace": "{{remaining}}kg / {{total}}kg disponibles",
+    "addFavorite": "Ajouter aux favoris",
+    "removeFavorite": "Retirer des favoris",
+    "noResults": "Aucun trajet disponible",
+    "tryDifferentSearch": "Modifiez vos critères de recherche pour voir plus de résultats",
+    "traveler": "Voyageur",
+    "filters": {
+      "title": "Recherche par mots-clés",
+      "titlePlaceholder": "Entrez des mots-clés...",
+      "departureCity": "Ville de départ",
+      "departureCityPlaceholder": "De...",
+      "destinationCity": "Ville de destination",
+      "destinationCityPlaceholder": "Vers...",
+      "departureDate": "Date de départ",
+      "clear": "Réinitialiser les filtres"
+    },
+    "form": {
+      "title": "Créer une nouvelle annonce",
+      "editTitle": "Modifier l'annonce",
+      "announcementTitle": "Titre de votre annonce",
+      "announcementTitlePlaceholder": "Ex: Paris → Dakar - 15kg disponibles",
+      "departureCity": "D'où partez-vous ?",
+      "departureCityPlaceholder": "Tapez le nom de votre ville de départ",
+      "destinationCity": "Où allez-vous ?",
+      "destinationCityPlaceholder": "Tapez le nom de votre destination",
+      "departureDate": "Quand partez-vous ?",
+      "availableSpace": "Combien de kilos pouvez-vous transporter ?",
+      "availableSpacePlaceholder": "Ex: 15 kg",
+      "pricePerKg": "Quel prix demandez-vous par kilo ?",
+      "pricePerKgPlaceholder": "Ex: 25€ par kilo",
+      "complementaryInfo": "Informations supplémentaires (optionnel)",
+      "complementaryInfoPlaceholder": "Décrivez le type de colis accepté, conditions particulières...",
+      "submit": "Publier l'annonce",
+      "update": "Mettre à jour",
+      "cancel": "Annuler"
+    },
+    "browse": {
+      "title": "Parcourir les annonces",
+      "subtitle": "Trouvez le trajet parfait pour vos envois",
+      "filterResults": "Filtrer les résultats",
+      "loading": "Chargement des annonces...",
+      "available": "disponible",
+      "book": "Réserver",
+      "demoMode": "Mode Démo Activé",
+      "demoModeDescription": "Connexion à la base de données impossible. L'application fonctionne en mode démo avec des données d'exemple."
+    },
+    "bookingRequests": "demande(s) de réservation",
+    "myBookings": "Mes demandes de réservation",
+    "myBookingsSubtitle": "Suivez le statut de vos demandes",
+    "noBookings": "Aucune demande de réservation",
+    "noBookingsSubtitle": "Vos demandes apparaîtront ici",
+    "cancelBooking": "Annuler",
+    "cancelSuccess": "Demande annulée avec succès",
+    "cancelFailed": "Impossible d'annuler la demande",
+    "totalPrice": "Total",
+    "requestedOn": "Demandé le",
+    "errors": {
+      "loadFailed": "Impossible de charger les annonces",
+      "createFailed": "Impossible de créer l'annonce",
+      "deleteFailed": "Impossible de supprimer l'annonce",
+      "connectionError": "Problème de connexion",
+      "retry": "Réessayer",
+      "serviceUnavailable": "Service temporairement indisponible. Veuillez réessayer plus tard.",
+      "tryAgainLater": "Veuillez réessayer plus tard"
+    }
+  },
+  "bookingRequest": {
+    "title": "Demande de réservation",
+    "requestedKilos": "Combien de kilos avez-vous besoin ?",
+    "priceEstimate": "Prix total : {{price}}€",
+    "message": "Message au voyageur (optionnel)",
+    "messagePlaceholder": "Présentez-vous et décrivez ce que vous souhaitez envoyer...",
+    "availableSpace": "Espace disponible : {{available}}kg",
+    "legalCheckbox": "Je certifie que mon colis ne contient aucun produit illégal ni aucun article interdit par la législation en vigueur pour le transport aérien.",
+    "submit": "Demander une réservation",
+    "noRequests": "Aucune demande reçue",
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "status": {
+      "pending": "En attente",
+      "approved": "Approuvé",
+      "rejected": "Rejeté",
+      "cancelled": "Annulé",
+      "handed_over": "Remis",
+      "delivered": "Livré"
+    },
+    "errors": {
+      "invalidKilos": "Veuillez entrer un nombre de kilos valide",
+      "notEnoughSpace": "Pas assez d'espace disponible. Il ne reste que {{available}}kg.",
+      "ownAnnouncement": "Vous ne pouvez pas réserver votre propre annonce",
+      "alreadyRequested": "Vous avez déjà une demande en attente pour cette annonce",
+      "generic": "Une erreur est survenue lors de la création de votre demande",
+      "loadFailed": "Impossible de charger les demandes de réservation",
+      "updateFailed": "Impossible de mettre à jour la demande de réservation"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Gérez vos préférences de compte",
+    "security": {
+      "title": "Sécurité",
+      "subtitle": "Gérez votre mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le nouveau mot de passe",
+      "save": "Changer le mot de passe",
+      "success": "Mot de passe mis à jour avec succès",
+      "errors": {
+        "mismatch": "Les mots de passe ne correspondent pas",
+        "tooShort": "Le mot de passe doit contenir au moins 8 caractères",
+        "requirements": "Le mot de passe doit contenir au moins 1 majuscule, 1 chiffre et 1 caractère spécial",
+        "failed": "Impossible de changer le mot de passe"
+      }
+    },
+    "language": {
+      "title": "Langue",
+      "subtitle": "Choisissez la langue de l'application",
+      "fr": "Français",
+      "en": "Anglais",
+      "save": "Enregistrer",
+      "success": "Langue mise à jour"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Gérez vos préférences de notification",
+      "email": "Notifications par e-mail",
+      "emailDesc": "Recevoir les mises à jour et alertes par e-mail",
+      "sms": "Notifications par SMS",
+      "smsDesc": "Recevoir les alertes importantes par SMS",
+      "save": "Enregistrer",
+      "success": "Préférences de notification mises à jour"
+    }
+  },
+  "chat": {
+    "conversations": "Messages",
+    "noConversations": "Aucune conversation",
+    "noConversationsSubtitle": "Vos conversations apparaitront ici une fois une demande de reservation approuvee",
+    "unknownUser": "Utilisateur inconnu",
+    "inputPlaceholder": "Ecrivez un message...",
+    "discuss": "Discuter",
+    "hints": {
+      "discussLocation": "Pensez a convenir d'un lieu de rendez-vous",
+      "discussTime": "Pensez a convenir d'une heure de rendez-vous",
+      "departureImminent": "Depart dans {{days}} jour(s) !"
+    }
+  },
+  "handoff": {
+    "senderConfirmHandover": "J'ai remis le colis",
+    "travelerConfirmReception": "Confirmer la prise en charge",
+    "waitingConfirmation": "En attente de confirmation...",
+    "delivered": "Livre",
+    "deliveryCode": "Code de livraison",
+    "copyCode": "Copier le code",
+    "codeCopied": "Code copie !",
+    "enterCodeHint": "Saisissez le code de livraison dans le chat pour confirmer",
+    "codeValidated": "Livraison confirmee !",
+    "invalidCode": "Code invalide. Veuillez reessayer.",
+    "systemMessages": {
+      "senderConfirmed": "L'expediteur a confirme la remise du colis",
+      "handedOver": "Le voyageur a confirme la prise en charge. Un code de livraison a ete genere.",
+      "delivered": "Livraison confirmee avec le bon code"
+    }
+  },
+  "rating": {
+    "title": "Notez votre experience",
+    "subtitle": "Comment s'est passe votre experience avec {{name}} ?",
+    "commentPlaceholder": "Laissez un commentaire (optionnel)...",
+    "submit": "Envoyer la note",
+    "rateNow": "Notez votre experience",
+    "submitted": "Note envoyee",
+    "labels": {
+      "1": "Tres mauvais",
+      "2": "Mauvais",
+      "3": "Moyen",
+      "4": "Bien",
+      "5": "Excellent"
+    }
+  },
+  "phoneVerification": {
+    "verify": "Verifier le telephone",
+    "verified": "Telephone verifie",
+    "noPhone": "Ajoutez un numero pour le verifier",
+    "invalidFormat": "Format invalide. Utilisez le format international (ex: +33612345678)",
+    "sendFailed": "Impossible d'envoyer le code. Reessayez plus tard.",
+    "verifyFailed": "Code invalide. Veuillez reessayer.",
+    "invalidCode": "Veuillez saisir un code a 6 chiffres",
+    "confirm": "Confirmer",
+    "resend": "Renvoyer le code",
+    "resendIn": "Renvoyer dans {{seconds}}s",
+    "requiredForSms": "Verifiez votre telephone pour activer les SMS"
+  },
+  "publicProfile": {
+    "roleTraveler": "Voyageur",
+    "roleSender": "Expediteur",
+    "roleBoth": "Voyageur & Expediteur",
+    "roleNew": "Nouveau membre",
+    "reviewCount": "{{count}} evaluation(s)",
+    "noReviews": "Pas encore d'evaluations",
+    "memberSince": "Membre depuis {{date}}",
+    "aboutTitle": "Quelques informations sur {{name}}",
+    "speaks": "Parle",
+    "livesIn": "Habite a",
+    "identityVerified": "Identite verifiee",
+    "noInfo": "Aucune information renseignee",
+    "reviewsTitle": "Commentaires pour {{name}}",
+    "noReviewsYet": "Pas encore de commentaires",
+    "notFound": "Profil introuvable",
+    "bioLabel": "Bio",
+    "bioPlaceholder": "Parlez de vous en quelques mots...",
+    "languagesLabel": "Langues parlees"
+  },
+  "languages": {
+    "fr": "Francais",
+    "en": "Anglais",
+    "es": "Espagnol",
+    "pt": "Portugais",
+    "ar": "Arabe",
+    "wo": "Wolof",
+    "sw": "Swahili",
+    "zh": "Chinois",
+    "de": "Allemand",
+    "it": "Italien",
+    "nl": "Neerlandais",
+    "ru": "Russe",
+    "ja": "Japonais",
+    "ko": "Coreen",
+    "hi": "Hindi",
+    "tr": "Turc"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "confirm": "Confirmer",
+    "close": "Fermer"
+  }
+}

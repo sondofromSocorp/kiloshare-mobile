@@ -1,0 +1,639 @@
+{
+  "nav": {
+    "home": "Home",
+    "howItWorks": "How It Works",
+    "trustSecurity": "Trust & Security",
+    "ourVision": "Our Vision",
+    "contact": "Contact Us",
+    "viewAnnouncements": "Browse Announcements",
+    "myAnnouncements": "My Announcements",
+    "createAccount": "Create Account",
+    "login": "Log in",
+    "profile": "My Profile",
+    "signOut": "Sign Out",
+    "admin": "Admin Dashboard",
+    "messages": "Messages",
+    "myTrips": "My trips",
+    "myBookings": "My requests"
+  },
+  "pages": {
+    "howItWorks": {
+      "title": "How Yemalo Works",
+      "subtitle": "Discover how Yemalo revolutionizes co-shipping by connecting senders with travelers heading in the same direction. Learn each step and the benefits for both parties.",
+      "steps": {
+        "step1": {
+          "title": "Step 1: Sign Up & Profile",
+          "description": "Create your account, complete your profile and verify your identity by uploading an ID document. A verified profile builds trust within the community."
+        },
+        "step2": {
+          "title": "Step 2: Post or Book",
+          "description": "Traveler? Post an announcement with your route, date and available kilos. Sender? Browse announcements and submit a booking request specifying the weight you need."
+        },
+        "step3": {
+          "title": "Step 3: Exchange & Deliver",
+          "description": "Once the booking is accepted, chat to arrange the meetup. Hand over the package, confirm pickup and validate delivery with the secure code."
+        }
+      },
+      "benefits": {
+        "title": "Benefits for Users",
+        "easyShipping": {
+          "title": "Easy Shipping",
+          "description": "Send packages easily using travelers excess luggage space."
+        },
+        "fastDelivery": {
+          "title": "Fast Delivery",
+          "description": "Receive your items faster than traditional shipping methods."
+        },
+        "secure": {
+          "title": "Secure & Verified",
+          "description": "All users are verified for a safe and reliable experience."
+        },
+        "affordable": {
+          "title": "Affordable Rates",
+          "description": "Save money compared to standard courier services."
+        }
+      },
+      "cta": {
+        "title": "Ready to Get Started?",
+        "subtitle": "Join our community of travelers and senders. Start shipping smarter today.",
+        "createAccount": "Create Account",
+        "browseTrips": "Browse Trips"
+      },
+      "countries": "Countries"
+    },
+    "trustSecurity": {
+      "title": "Trust & Security at Yemalo",
+      "subtitle": "Commitment to secure transactions and user verifications for a safer experience.",
+      "learnMore": "Learn More",
+      "features": {
+        "safeParcel": {
+          "title": "Safe Parcel Handling",
+          "description": "Your parcels are handled with care. All packages are tracked at every step for your peace of mind."
+        },
+        "escrow": {
+          "title": "Escrow Payment System",
+          "description": "Our secure payment system protects both senders and travelers. Payments are held safely until delivery is confirmed."
+        },
+        "verification": {
+          "title": "User Verification",
+          "description": "We verify users with ID verification for added security. Only verified users can ship and receive."
+        }
+      },
+      "badges": {
+        "ssl": "SSL Encrypted",
+        "monitoring": "24/7 Monitoring",
+        "dataProtection": "Data Protection",
+        "verifiedUsers": "Verified Users"
+      },
+      "testimonials": {
+        "title": "Testimonials",
+        "testimonial1": {
+          "quote": "Yemalo has transformed the way I send packages home. The verification system gives me complete confidence.",
+          "name": "Marie Koffi",
+          "route": "Paris - Abidjan"
+        },
+        "testimonial2": {
+          "quote": "The escrow system gives me peace of mind. I know my payment is secure until my package arrives safely.",
+          "name": "Oumar Diallo",
+          "route": "Lyon - Dakar"
+        },
+        "testimonial3": {
+          "quote": "User verification has enhanced my trust in the platform. I feel safe connecting with other users.",
+          "name": "Sarah Mensah",
+          "route": "Brussels - Accra"
+        }
+      }
+    },
+    "ourVision": {
+      "title": "Our Ambitious Vision",
+      "subtitle": "Yemalo aims to be the premier logistics bridge between Europe and Africa, fostering economic growth, human connections, and ensuring safety in all operations.",
+      "pillars": {
+        "economic": {
+          "title": "Economic",
+          "description": "We strive to create money-making opportunities by connecting travelers with senders, enabling profitable trips."
+        },
+        "safe": {
+          "title": "Safe",
+          "description": "Safety is paramount in all our operations. We ensure secure transactions and verified users."
+        },
+        "community": {
+          "title": "Community",
+          "description": "Building a connected community of travelers and senders who share the same values."
+        }
+      },
+      "mission": {
+        "badge": "Our Mission",
+        "title": "Connecting Communities, One Package at a Time",
+        "description": "We believe that every journey can create an opportunity. By connecting travelers with excess luggage space to people who need to send packages, we create a win-win situation that benefits everyone involved.",
+        "points": {
+          "carbon": "Reducing carbon footprint through shared logistics",
+          "economic": "Creating economic opportunities for travelers",
+          "trust": "Building trust through verified communities"
+        }
+      },
+      "community": {
+        "title": "Community Engagement",
+        "subtitle": "Our most active routes. From contributors who give generously to small local businesses who have found benefits from this collaborative platform.",
+        "growing": {
+          "title": "Growing Together",
+          "description": "We're proud to see how our community has grown and helped families stay connected across continents."
+        },
+        "business": {
+          "title": "Supporting Local Business",
+          "description": "\"Yemalo has transformed the way we do business with Europe coming together. Convenient and efficient.\" - Beauty Fashion"
+        }
+      },
+      "stats": {
+        "activeUsers": "Active Users",
+        "packagesDelivered": "Packages Delivered",
+        "countries": "Countries",
+        "userRating": "User Rating"
+      }
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "subtitle": "Have questions or need support? We're here to help. Reach out to us and we'll respond as soon as possible.",
+      "info": {
+        "email": "Email",
+        "phone": "Phone",
+        "hours": "Hours",
+        "hoursValue": "Mon-Fri 9am-6pm CET"
+      },
+      "form": {
+        "title": "Contact Form",
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "your@email.com",
+        "subject": "Subject",
+        "subjectPlaceholder": "Select a subject",
+        "subjects": {
+          "general": "General Inquiry",
+          "support": "Technical Support",
+          "billing": "Billing Question",
+          "partnership": "Partnership"
+        },
+        "message": "Message",
+        "messagePlaceholder": "How can we help you?",
+        "send": "Send Message",
+        "success": "Message sent! We will get back to you soon."
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+          "question": "How can I track my package?",
+          "answer": "Once your package is accepted by a traveler, you can track its status through your dashboard. You will receive notifications at each step of the journey."
+        },
+        "q2": {
+          "question": "What items are prohibited from shipping?",
+          "answer": "Prohibited items include hazardous materials, illegal substances, weapons, perishable foods, and items that violate customs regulations. Please check our full list before shipping."
+        },
+        "q3": {
+          "question": "How does the payment system work?",
+          "answer": "We use a secure escrow system. The sender pays when booking, and the payment is held safely until the traveler confirms delivery. This protects both parties."
+        },
+        "q4": {
+          "question": "What if my package is damaged or lost?",
+          "answer": "All shipments are covered by our protection policy. In case of damage or loss, please contact our support team immediately and we will help resolve the issue."
+        },
+        "q5": {
+          "question": "How do I become a verified traveler?",
+          "answer": "To become verified, complete your profile, upload a valid ID document, and pass our verification process. This typically takes 24-48 hours."
+        }
+      }
+    },
+    "home": {
+      "welcome": "Welcome to Yemalo! Complete your profile to get started.",
+      "completeProfile": "Complete Profile",
+      "stats": {
+        "activeUsers": "Active Users",
+        "packagesDelivered": "Packages Delivered",
+        "countries": "Countries",
+        "userRating": "User Rating"
+      },
+      "cta": {
+        "title": "Ready to get started?",
+        "subtitle": "Join our community of travelers and senders. Start shipping smarter today.",
+        "createAccount": "Create Account",
+        "browseTrips": "Browse Trips"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "The collaborative transport solution",
+    "company": "Company",
+    "about": "About",
+    "support": "Support",
+    "contactUs": "Contact us",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "copyright": "© 2025 Yemalo. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "services": {
+      "title": "Services",
+      "howItWorks": "How it works",
+      "pricing": "Pricing",
+      "insurance": "Insurance",
+      "faq": "FAQ"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy",
+      "legalNotice": "Legal Notice"
+    }
+  },
+  "bookingRequest": {
+    "title": "Booking Request",
+    "requestedKilos": "How many kilos do you need?",
+    "priceEstimate": "Total price: €%{price}",
+    "message": "Message to traveler (optional)",
+    "messagePlaceholder": "Introduce yourself and describe what you'd like to send...",
+    "availableSpace": "Available space: {{available}}kg",
+    "legalCheckbox": "I certify that my package does not contain any illegal products or any items prohibited by applicable legislation for air transport.",
+    "submit": "Request Booking",
+    "noRequests": "No requests received",
+    "approve": "Approve",
+    "reject": "Reject",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled",
+      "handed_over": "Handed over",
+      "delivered": "Delivered"
+    },
+    "errors": {
+      "invalidKilos": "Please enter a valid number of kilos",
+      "notEnoughSpace": "Not enough space available. Only %{available}kg remaining.",
+      "ownAnnouncement": "You cannot book your own announcement",
+      "alreadyRequested": "You already have a pending request for this announcement",
+      "generic": "An error occurred while creating your booking request",
+      "loadFailed": "Failed to load booking requests",
+      "updateFailed": "Failed to update booking request"
+    }
+  },
+  "hero": {
+    "title": "Travel smart.\nCarry with purpose.",
+    "description": "Make your travels profitable by carrying packages in your luggage. Economical and eco-friendly!",
+    "sendButton": "Send a package",
+    "viewButton": "View available trips"
+  },
+  "features": {
+    "delivery": {
+      "title": "Affordable Delivery",
+      "description": "Up to 80% cheaper than traditional shipping thanks to travelers' available luggage space."
+    },
+    "insurance": {
+      "title": "Guaranteed Security",
+      "description": "All shipments are insured! Coverage up to €5000 for maximum security."
+    },
+    "satisfaction": {
+      "title": "Trusted Community",
+      "description": "Over 400,000 satisfied travelers rate us 4.7/5 ⭐"
+    }
+  },
+  "testimonials": {
+    "title": "What our users say",
+    "subtitle": "4.7/5 stars from over 400,000 verified reviews ❤️"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Access your personal space",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign In",
+      "forgotPassword": "Forgot password?",
+      "noAccount": "Don't have an account?",
+      "register": "Create account",
+      "continueWithGoogle": "Continue with Google",
+      "continueWithFacebook": "Continue with Facebook",
+      "orContinueWith": "Or continue with",
+      "errors": {
+        "generic": "An error occurred during sign in",
+        "serviceUnavailable": "Service temporarily unavailable. Please try again later.",
+        "retry": "Try again"
+      }
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join thousands of travelers",
+      "email": "Email address",
+      "emailPlaceholder": "your@email.com",
+      "password": "Password",
+      "passwordPlaceholder": "Your password",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "submit": "Create my account",
+      "alreadyHaveAccount": "Already have an account?",
+      "login": "Sign in",
+      "success": "Account created successfully! Redirecting...",
+      "errors": {
+        "userExists": "An account already exists with this email address",
+        "generic": "An error occurred while creating the account",
+        "serviceUnavailable": "Service temporarily unavailable. Please try again later."
+      }
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your personal information",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "username": "Username",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "streetAddress": "Address",
+    "streetAddressPlaceholder": "123 Main Street",
+    "postalCode": "Postal Code",
+    "postalCodePlaceholder": "12345",
+    "city": "City",
+    "cityPlaceholder": "New York",
+    "country": "Country",
+    "selectCountry": "Select a country",
+    "favorites": "My favorites",
+    "noFavorites": "You don't have any favorites yet",
+    "noFavoritesSubtitle": "Browse announcements and add some to your favorites",
+    "updateSuccess": "Profile updated successfully",
+    "errors": {
+      "loadFailed": "Failed to load profile",
+      "updateFailed": "Failed to update profile",
+      "usernameTaken": "This username is already taken",
+      "avatarUploadFailed": "Failed to upload avatar",
+      "avatarDeleteFailed": "Failed to delete avatar"
+    }
+  },
+  "idVerification": {
+    "title": "Identity Verification",
+    "subtitle": "Upload an identity document to secure your account",
+    "documentType": {
+      "national_id": "National ID",
+      "passport": "Passport"
+    },
+    "dropHere": "Drop your document here",
+    "dragAndDrop": "Drag and drop your document or click to select",
+    "fileRequirements": "JPG, PNG or PDF - Maximum 5MB",
+    "processing": "Processing document...",
+    "dataExtracted": "Data extracted successfully",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "errors": {
+      "fileTooLarge": "File is too large (maximum 5MB)",
+      "uploadFailed": "Upload failed"
+    }
+  },
+  "admin": {
+    "verification": {
+      "title": "Administration - Identity Verification",
+      "subtitle": "Manage identity verification requests",
+      "searchPlaceholder": "Search by name or email...",
+      "filters": {
+        "all": "All",
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "approve": "Approve",
+      "reject": "Reject",
+      "rejectionReason": "Rejection reason",
+      "rejectionReasonPlaceholder": "Explain why this document is rejected...",
+      "confirmReject": "Confirm rejection",
+      "cancel": "Cancel",
+      "noDocuments": "No documents to verify",
+      "loading": "Loading...",
+      "errors": {
+        "loadFailed": "Failed to load documents",
+        "verificationFailed": "Verification failed",
+        "rejectionReasonRequired": "A rejection reason is required"
+      }
+    }
+  },
+  "announcements": {
+    "title": "My Transport Announcements",
+    "subtitle": "Manage your transport offers",
+    "createNew": "Create new announcement",
+    "noAnnouncements": "No announcements created",
+    "noAnnouncementsSubtitle": "Start by creating your first transport announcement",
+    "addFavorite": "Add to favorites",
+    "removeFavorite": "Remove from favorites",
+    "remainingSpace": "{{remaining}}kg / {{total}}kg available",
+    "noResults": "No trips available",
+    "tryDifferentSearch": "Modify your search criteria to see more results",
+    "traveler": "Traveler",
+    "filters": {
+      "title": "Search by keywords",
+      "titlePlaceholder": "Enter keywords...",
+      "departureCity": "Departure city",
+      "departureCityPlaceholder": "From...",
+      "destinationCity": "Destination city",
+      "destinationCityPlaceholder": "To...",
+      "departureDate": "Departure date",
+      "clear": "Reset filters"
+    },
+    "form": {
+      "title": "Create a new announcement",
+      "editTitle": "Edit announcement",
+      "announcementTitle": "Announcement title",
+      "announcementTitlePlaceholder": "E.g.: Paris → Dakar - 15kg available",
+      "departureCity": "Where are you leaving from?",
+      "departureCityPlaceholder": "Enter your departure city",
+      "destinationCity": "Where are you going?",
+      "destinationCityPlaceholder": "Enter your destination",
+      "departureDate": "When are you leaving?",
+      "availableSpace": "How many kilos can you carry?",
+      "availableSpacePlaceholder": "E.g.: 15 kg",
+      "pricePerKg": "What price do you charge per kilo?",
+      "pricePerKgPlaceholder": "E.g.: €25 per kilo",
+      "complementaryInfo": "Additional information (optional)",
+      "complementaryInfoPlaceholder": "Describe accepted package types, special conditions...",
+      "submit": "Publish announcement",
+      "update": "Update",
+      "cancel": "Cancel"
+    },
+    "browse": {
+      "title": "Browse Announcements",
+      "subtitle": "Find the perfect trip for your shipments",
+      "filterResults": "Filter results",
+      "loading": "Loading announcements...",
+      "available": "available",
+      "book": "Book",
+      "demoMode": "Demo Mode Active",
+      "demoModeDescription": "Database connection unavailable. The app is running in demo mode with sample data."
+    },
+    "bookingRequests": "booking request(s)",
+    "myBookings": "My booking requests",
+    "myBookingsSubtitle": "Track the status of your requests",
+    "noBookings": "No booking requests",
+    "noBookingsSubtitle": "Your requests will appear here",
+    "cancelBooking": "Cancel",
+    "cancelSuccess": "Request cancelled successfully",
+    "cancelFailed": "Failed to cancel request",
+    "totalPrice": "Total",
+    "requestedOn": "Requested on",
+    "errors": {
+      "loadFailed": "Failed to load announcements",
+      "createFailed": "Failed to create announcement",
+      "deleteFailed": "Failed to delete announcement",
+      "connectionError": "Connection issue",
+      "retry": "Try again",
+      "serviceUnavailable": "Service temporarily unavailable. Please try again later.",
+      "tryAgainLater": "Please try again later"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account preferences",
+    "security": {
+      "title": "Security",
+      "subtitle": "Manage your password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "save": "Change password",
+      "success": "Password updated successfully",
+      "errors": {
+        "mismatch": "Passwords do not match",
+        "tooShort": "Password must be at least 8 characters",
+        "requirements": "Password must contain at least 1 uppercase letter, 1 number and 1 special character",
+        "failed": "Failed to change password"
+      }
+    },
+    "language": {
+      "title": "Language",
+      "subtitle": "Choose the application language",
+      "fr": "French",
+      "en": "English",
+      "save": "Save",
+      "success": "Language updated"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Manage your notification preferences",
+      "email": "Email notifications",
+      "emailDesc": "Receive updates and alerts by email",
+      "sms": "SMS notifications",
+      "smsDesc": "Receive important alerts by SMS",
+      "save": "Save",
+      "success": "Notification preferences updated"
+    }
+  },
+  "chat": {
+    "conversations": "Messages",
+    "noConversations": "No conversations yet",
+    "noConversationsSubtitle": "Your conversations will appear here once a booking request is approved",
+    "unknownUser": "Unknown user",
+    "inputPlaceholder": "Type a message...",
+    "discuss": "Chat",
+    "hints": {
+      "discussLocation": "Remember to agree on a meeting point",
+      "discussTime": "Remember to agree on a meeting time",
+      "departureImminent": "Departure in {{days}} day(s)!"
+    }
+  },
+  "handoff": {
+    "senderConfirmHandover": "I handed over the package",
+    "travelerConfirmReception": "Confirm pickup",
+    "waitingConfirmation": "Waiting for confirmation...",
+    "delivered": "Delivered",
+    "deliveryCode": "Delivery code",
+    "copyCode": "Copy code",
+    "codeCopied": "Code copied!",
+    "enterCodeHint": "Enter the delivery code in the chat to confirm delivery",
+    "codeValidated": "Delivery confirmed!",
+    "invalidCode": "Invalid code. Please try again.",
+    "systemMessages": {
+      "senderConfirmed": "The sender confirmed the package handover",
+      "handedOver": "The traveler confirmed the package pickup. A delivery code has been generated.",
+      "delivered": "Delivery confirmed with the correct code"
+    }
+  },
+  "rating": {
+    "title": "Rate your experience",
+    "subtitle": "How was your experience with {{name}}?",
+    "commentPlaceholder": "Leave a comment (optional)...",
+    "submit": "Submit rating",
+    "rateNow": "Rate your experience",
+    "submitted": "Rating submitted",
+    "labels": {
+      "1": "Very poor",
+      "2": "Poor",
+      "3": "Average",
+      "4": "Good",
+      "5": "Excellent"
+    }
+  },
+  "phoneVerification": {
+    "verify": "Verify phone",
+    "verified": "Phone verified",
+    "noPhone": "Add a phone number to verify it",
+    "invalidFormat": "Invalid format. Use international format (e.g. +33612345678)",
+    "sendFailed": "Failed to send code. Please try again later.",
+    "verifyFailed": "Invalid code. Please try again.",
+    "invalidCode": "Please enter a 6-digit code",
+    "confirm": "Confirm",
+    "resend": "Resend code",
+    "resendIn": "Resend in {{seconds}}s",
+    "requiredForSms": "Verify your phone to enable SMS notifications"
+  },
+  "publicProfile": {
+    "roleTraveler": "Traveler",
+    "roleSender": "Sender",
+    "roleBoth": "Traveler & Sender",
+    "roleNew": "New member",
+    "reviewCount": "{{count}} review(s)",
+    "noReviews": "No reviews yet",
+    "memberSince": "Member since {{date}}",
+    "aboutTitle": "About {{name}}",
+    "speaks": "Speaks",
+    "livesIn": "Lives in",
+    "identityVerified": "Identity verified",
+    "noInfo": "No information provided",
+    "reviewsTitle": "Reviews for {{name}}",
+    "noReviewsYet": "No reviews yet",
+    "notFound": "Profile not found",
+    "bioLabel": "Bio",
+    "bioPlaceholder": "Tell others about yourself...",
+    "languagesLabel": "Languages spoken"
+  },
+  "languages": {
+    "fr": "French",
+    "en": "English",
+    "es": "Spanish",
+    "pt": "Portuguese",
+    "ar": "Arabic",
+    "wo": "Wolof",
+    "sw": "Swahili",
+    "zh": "Chinese",
+    "de": "German",
+    "it": "Italian",
+    "nl": "Dutch",
+    "ru": "Russian",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "hi": "Hindi",
+    "tr": "Turkish"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "close": "Close"
+  }
+}
