@@ -412,12 +412,12 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   cityText: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '700',
     color: colors.gray900,
   },
   countryText: {
-    fontSize: 12,
+    fontSize: 13,
     color: colors.gray400,
   },
   travelerRow: {
