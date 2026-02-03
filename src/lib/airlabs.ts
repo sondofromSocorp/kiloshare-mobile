@@ -86,9 +86,10 @@ export async function searchAirports(query: string): Promise<Airport[]> {
 export async function searchCities(query: string): Promise<City[]> {
   const airports = await searchAirports(query);
   return airports.map((airport) => ({
-    name: `${airport.name} (${airport.iata_code})`,
+    name: `${airport.city} - ${airport.name} (${airport.iata_code})`,
     city_code: airport.iata_code,
     country_code: airport.country_code,
+    city: airport.city,
   }));
 }
 

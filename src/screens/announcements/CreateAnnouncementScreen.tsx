@@ -129,14 +129,14 @@ export function CreateAnnouncementScreen() {
   }, [destinationSearch]);
 
   const handleDepartureSelect = (city: City) => {
-    setDepartureCity(city.name);
+    setDepartureCity(city.city || city.name);
     setDepartureCountry(city.country_code);
     setDepartureSearch(city.name);
     setDepartureCities([]);
   };
 
   const handleDestinationSelect = (city: City) => {
-    setDestinationCity(city.name);
+    setDestinationCity(city.city || city.name);
     setDestinationCountry(city.country_code);
     setDestinationSearch(city.name);
     setDestinationCities([]);

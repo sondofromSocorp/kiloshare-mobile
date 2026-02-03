@@ -183,6 +183,7 @@ export interface City {
   name: string;
   city_code: string;
   country_code: string;
+  city?: string;
 }
 
 export interface Airport {
