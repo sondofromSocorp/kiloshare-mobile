@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   },
   headerCard: {
     backgroundColor: colors.white,
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 24,
     alignItems: 'center',
     marginBottom: 12,

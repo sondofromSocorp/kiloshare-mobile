@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   title: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '700',
     color: colors.gray900,
   },

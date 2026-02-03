@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   // Header
   headerCard: {
     backgroundColor: colors.white,
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 24,
     alignItems: 'center',
     marginBottom: 12,
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   displayName: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '700',
     color: colors.gray900,
   },

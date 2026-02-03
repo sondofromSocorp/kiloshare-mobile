@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   screenTitle: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '700',
     color: colors.gray900,
     marginBottom: 20,

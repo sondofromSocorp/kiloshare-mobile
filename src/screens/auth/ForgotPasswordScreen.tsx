@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, fontWeight: '700', color: colors.gray900, textAlign: 'center' },
   subtitle: { fontSize: 15, color: colors.gray500, textAlign: 'center', marginTop: 8, marginBottom: 32 },
   form: { gap: 12 },
-  label: { fontSize: 14, fontWeight: '500', color: colors.gray700 },
+  label: { fontSize: 14, fontWeight: '600', color: colors.gray700 },
   input: {
     borderWidth: 1, borderColor: colors.gray300, borderRadius: 10,
     paddingHorizontal: 14, paddingVertical: 12, fontSize: 16, color: colors.gray900,
