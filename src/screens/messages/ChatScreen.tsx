@@ -171,8 +171,8 @@ export function ChatScreen() {
     setInputText('');
 
     try {
-      // Check if message is a delivery code
-      if (handoffStep === 'handed_over' && isSender) {
+      // Check if message is a delivery code - TRAVELER enters the code
+      if (handoffStep === 'handed_over' && isTraveler) {
         const valid = await validateDeliveryCode(bookingRequestId, text, user!.id);
         if (valid) {
           setHandoffStep('delivered');
@@ -327,9 +327,9 @@ export function ChatScreen() {
       );
     }
 
-    // Delivery code display
+    // Delivery code display - only visible to SENDER
     if (handoffStep === 'handed_over' && deliveryCode) {
-      if (isTraveler) {
+      if (isSender) {
         return (
           <View style={styles.deliveryCodeBanner}>
             <Text style={styles.deliveryCodeLabel}>{t('handoff.deliveryCode')}</Text>
@@ -343,7 +343,7 @@ export function ChatScreen() {
           </View>
         );
       }
-      if (isSender) {
+      if (isTraveler) {
         return (
           <View style={styles.codeHintBanner}>
             <Ionicons name="key-outline" size={16} color={colors.primary} />
