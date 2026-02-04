@@ -10,7 +10,10 @@ export function useChat(bookingRequestId: string, userId: string | undefined) {
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
 
   const loadMessages = useCallback(async () => {
-    if (!bookingRequestId || !userId) return;
+    if (!bookingRequestId || !userId) {
+      setLoading(false);
+      return;
+    }
     try {
       setError(null);
       const data = await fetchMessages(bookingRequestId);
