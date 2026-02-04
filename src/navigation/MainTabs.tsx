@@ -3,6 +3,7 @@ import { Image, View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 import { BrowseStack } from './BrowseStack';
+import { FavoritesStack } from './FavoritesStack';
 import { AnnouncementsStack } from './AnnouncementsStack';
 import { MessagesStack } from './MessagesStack';
 import { ProfileStack } from './ProfileStack';
@@ -80,6 +81,16 @@ export function MainTabs() {
           tabBarLabel: t('nav.browse', 'Explorer'),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="FavoritesTab"
+        component={FavoritesStack}
+        options={{
+          tabBarLabel: t('profile.favorites', 'Favoris'),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="heart" size={size} color={color} />
           ),
         }}
       />

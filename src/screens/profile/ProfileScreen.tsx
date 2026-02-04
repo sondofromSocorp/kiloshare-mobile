@@ -104,13 +104,20 @@ export function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Header card */}
         <View style={styles.headerCard}>
-          {profile?.avatar_url ? (
-            <Image source={{ uri: profile.avatar_url }} style={styles.avatarImage} />
-          ) : (
-            <View style={styles.avatarLarge}>
-              <Ionicons name="person" size={36} color={colors.white} />
-            </View>
-          )}
+          <View style={styles.avatarContainer}>
+            {profile?.avatar_url ? (
+              <Image source={{ uri: profile.avatar_url }} style={styles.avatarImage} />
+            ) : (
+              <View style={styles.avatarLarge}>
+                <Ionicons name="person" size={36} color={colors.white} />
+              </View>
+            )}
+            {profile?.identity_verified && (
+              <View style={styles.verifiedBadge}>
+                <Ionicons name="shield-checkmark" size={16} color={colors.white} />
+              </View>
+            )}
+          </View>
           <Text style={styles.displayName}>{displayName || profile?.username || user?.email}</Text>
           {profile?.username && displayName && (
             <Text style={styles.username}>@{profile.username}</Text>
@@ -255,6 +262,10 @@ const styles = StyleSheet.create({
       android: { elevation: 3 },
     }),
   },
+  avatarContainer: {
+    position: 'relative',
+    marginBottom: 12,
+  },
   avatarLarge: {
     width: 80,
     height: 80,
@@ -262,13 +273,24 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 12,
   },
   avatarImage: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    marginBottom: 12,
+  },
+  verifiedBadge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: colors.green600,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: colors.white,
   },
   displayName: {
     fontSize: 20,
