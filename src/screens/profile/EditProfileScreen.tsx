@@ -10,10 +10,12 @@ import {
   Alert,
   Platform,
   KeyboardAvoidingView,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
+import * as ImagePicker from 'expo-image-picker';
 import { colors } from '../../theme/colors';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../lib/auth';
@@ -30,6 +32,8 @@ export function EditProfileScreen() {
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -63,6 +67,7 @@ export function EditProfileScreen() {
         setCountry(p.country ?? '');
         setBio(p.bio ?? '');
         setLanguages(p.languages ?? []);
+        setAvatarUrl(p.avatar_url ?? null);
       }
     } catch {
       Alert.alert(t('common.error'), t('profile.errors.loadFailed'));
@@ -79,6 +84,114 @@ export function EditProfileScreen() {
   const toggleLanguage = (lang: string) => {
     setLanguages((prev) =>
       prev.includes(lang) ? prev.filter((l) => l !== lang) : [...prev, lang]
+    );
+  };
+
+  const pickAndUploadAvatar = async () => {
+    if (!user) return;
+
+    try {
+      const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (!permissionResult.granted) {
+        Alert.alert(t('common.error'), t('profile.errors.permissionDenied'));
+        return;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.8,
+      });
+
+      if (result.canceled || !result.assets[0]) return;
+
+      setUploadingAvatar(true);
+      const asset = result.assets[0];
+
+      // Create file name
+      const fileExt = asset.uri.split('.').pop()?.toLowerCase() || 'jpg';
+      const fileName = `${user.id}/${Date.now()}.${fileExt}`;
+
+      // Fetch the image as blob
+      const response = await fetch(asset.uri);
+      const blob = await response.blob();
+
+      // Convert blob to array buffer
+      const arrayBuffer = await new Response(blob).arrayBuffer();
+
+      // Upload to Supabase storage
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(fileName, arrayBuffer, {
+          contentType: `image/${fileExt}`,
+          upsert: true,
+        });
+
+      if (uploadError) throw uploadError;
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(fileName);
+
+      // Update profile with new avatar URL
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({ avatar_url: publicUrl })
+        .eq('id', user.id);
+
+      if (updateError) throw updateError;
+
+      setAvatarUrl(publicUrl);
+    } catch (err) {
+      console.error('Avatar upload error:', err);
+      Alert.alert(t('common.error'), t('profile.errors.avatarUploadFailed'));
+    } finally {
+      setUploadingAvatar(false);
+    }
+  };
+
+  const handleDeleteAvatar = async () => {
+    if (!user || !avatarUrl) return;
+
+    Alert.alert(
+      t('profile.deleteAvatarTitle'),
+      t('profile.deleteAvatarMessage'),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('common.delete'),
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              setUploadingAvatar(true);
+
+              // Extract file path from URL
+              const urlParts = avatarUrl.split('/');
+              const filePath = urlParts.slice(-2).join('/');
+
+              // Delete from storage
+              await supabase.storage.from('avatars').remove([filePath]);
+
+              // Update profile
+              const { error } = await supabase
+                .from('profiles')
+                .update({ avatar_url: null })
+                .eq('id', user.id);
+
+              if (error) throw error;
+
+              setAvatarUrl(null);
+            } catch (err) {
+              console.error('Delete avatar error:', err);
+              Alert.alert(t('common.error'), t('profile.errors.avatarDeleteFailed'));
+            } finally {
+              setUploadingAvatar(false);
+            }
+          },
+        },
+      ]
     );
   };
 
@@ -141,6 +254,36 @@ export function EditProfileScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.screenTitle}>{t('profile.edit')}</Text>
+
+        {/* Avatar */}
+        <View style={styles.avatarSection}>
+          <TouchableOpacity
+            style={styles.avatarContainer}
+            onPress={pickAndUploadAvatar}
+            disabled={uploadingAvatar}
+          >
+            {uploadingAvatar ? (
+              <View style={styles.avatarPlaceholder}>
+                <ActivityIndicator color={colors.white} />
+              </View>
+            ) : avatarUrl ? (
+              <Image source={{ uri: avatarUrl }} style={styles.avatarImage} />
+            ) : (
+              <View style={styles.avatarPlaceholder}>
+                <Ionicons name="person" size={40} color={colors.white} />
+              </View>
+            )}
+            <View style={styles.avatarEditBadge}>
+              <Ionicons name="camera" size={14} color={colors.white} />
+            </View>
+          </TouchableOpacity>
+          <Text style={styles.avatarHint}>{t('profile.tapToChangeAvatar')}</Text>
+          {avatarUrl && (
+            <TouchableOpacity onPress={handleDeleteAvatar} disabled={uploadingAvatar}>
+              <Text style={styles.deleteAvatarText}>{t('profile.deleteAvatar')}</Text>
+            </TouchableOpacity>
+          )}
+        </View>
 
         {/* First name */}
         <Text style={styles.label}>{t('profile.firstName')}</Text>
@@ -307,6 +450,50 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.gray900,
     marginBottom: 20,
+  },
+  avatarSection: {
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  avatarContainer: {
+    position: 'relative',
+  },
+  avatarPlaceholder: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  avatarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  avatarEditBadge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: colors.gray700,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: colors.white,
+  },
+  avatarHint: {
+    fontSize: 13,
+    color: colors.gray400,
+    marginTop: 8,
+  },
+  deleteAvatarText: {
+    fontSize: 13,
+    color: colors.red500,
+    marginTop: 6,
+    fontWeight: '500',
   },
   label: {
     fontSize: 14,

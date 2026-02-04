@@ -359,12 +359,17 @@
     "noFavorites": "You don't have any favorites yet",
     "noFavoritesSubtitle": "Browse announcements and add some to your favorites",
     "updateSuccess": "Profile updated successfully",
+    "tapToChangeAvatar": "Tap to change photo",
+    "deleteAvatar": "Delete photo",
+    "deleteAvatarTitle": "Delete photo",
+    "deleteAvatarMessage": "Are you sure you want to delete your profile photo?",
     "errors": {
       "loadFailed": "Failed to load profile",
       "updateFailed": "Failed to update profile",
       "usernameTaken": "This username is already taken",
       "avatarUploadFailed": "Failed to upload avatar",
-      "avatarDeleteFailed": "Failed to delete avatar"
+      "avatarDeleteFailed": "Failed to delete avatar",
+      "permissionDenied": "Gallery access permission denied"
     }
   },
   "idVerification": {

@@ -354,12 +354,17 @@
     "noFavorites": "Vous n'avez pas encore de favoris",
     "noFavoritesSubtitle": "Parcourez les annonces et ajoutez-en à vos favoris",
     "updateSuccess": "Profil mis à jour avec succès",
+    "tapToChangeAvatar": "Appuyer pour changer la photo",
+    "deleteAvatar": "Supprimer la photo",
+    "deleteAvatarTitle": "Supprimer la photo",
+    "deleteAvatarMessage": "Voulez-vous vraiment supprimer votre photo de profil ?",
     "errors": {
       "loadFailed": "Impossible de charger le profil",
       "updateFailed": "Impossible de mettre à jour le profil",
       "usernameTaken": "Ce nom d'utilisateur est déjà pris",
       "avatarUploadFailed": "Impossible de télécharger l'avatar",
-      "avatarDeleteFailed": "Impossible de supprimer l'avatar"
+      "avatarDeleteFailed": "Impossible de supprimer l'avatar",
+      "permissionDenied": "Permission d'accès à la galerie refusée"
     }
   },
   "idVerification": {
