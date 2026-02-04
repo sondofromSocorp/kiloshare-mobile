@@ -34,6 +34,7 @@ export function BrowseScreen() {
   const { user } = useAuth();
 
   const [announcements, setAnnouncements] = useState<AnnouncementWithProfile[]>([]);
+  const [verifiedUsers, setVerifiedUsers] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -63,7 +64,21 @@ export function BrowseScreen() {
       const { data, error: fetchError } = await query;
 
       if (fetchError) throw fetchError;
-      setAnnouncements((data as AnnouncementWithProfile[]) ?? []);
+      const announcementsList = (data as AnnouncementWithProfile[]) ?? [];
+      setAnnouncements(announcementsList);
+
+      // Fetch verified users
+      if (announcementsList.length > 0) {
+        const userIds = [...new Set(announcementsList.map((a) => a.user_id))];
+        const { data: verifiedDocs } = await supabase
+          .from('identity_documents')
+          .select('user_id')
+          .in('user_id', userIds)
+          .eq('status', 'approved');
+
+        const verifiedSet = new Set(verifiedDocs?.map((d) => d.user_id) || []);
+        setVerifiedUsers(verifiedSet);
+      }
     } catch (err: any) {
       setError(t('announcements.errors.loadFailed'));
     } finally {
@@ -150,16 +165,23 @@ export function BrowseScreen() {
               navigation.navigate('PublicProfile', { userId: item.user_id });
             }}
           >
-            {item.profiles?.avatar_url ? (
-              <Image
-                source={{ uri: item.profiles.avatar_url }}
-                style={styles.avatarImage}
-              />
-            ) : (
-              <View style={styles.avatarPlaceholder}>
-                <Ionicons name="person" size={14} color={colors.white} />
-              </View>
-            )}
+            <View style={styles.avatarContainer}>
+              {item.profiles?.avatar_url ? (
+                <Image
+                  source={{ uri: item.profiles.avatar_url }}
+                  style={styles.avatarImage}
+                />
+              ) : (
+                <View style={styles.avatarPlaceholder}>
+                  <Ionicons name="person" size={14} color={colors.white} />
+                </View>
+              )}
+              {verifiedUsers.has(item.user_id) && (
+                <View style={styles.verifiedBadge}>
+                  <Ionicons name="shield-checkmark" size={10} color={colors.white} />
+                </View>
+              )}
+            </View>
             <Text style={styles.travelerName}>{travelerName}</Text>
           </TouchableOpacity>
           <Text style={styles.priceText}>{item.price_per_kg}€/kg</Text>
@@ -476,6 +498,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
+  avatarContainer: {
+    position: 'relative',
+  },
   avatarPlaceholder: {
     width: 28,
     height: 28,
@@ -488,6 +513,19 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
+  },
+  verifiedBadge: {
+    position: 'absolute',
+    bottom: -2,
+    right: -2,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: colors.green600,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: colors.white,
   },
   travelerName: {
     fontSize: 13,

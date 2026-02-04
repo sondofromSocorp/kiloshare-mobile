@@ -38,6 +38,7 @@ export function FavoritesScreen() {
   const { user } = useAuth();
 
   const [favorites, setFavorites] = useState<FavoriteAnnouncement[]>([]);
+  const [verifiedUsers, setVerifiedUsers] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [bookedKilos, setBookedKilos] = useState<Record<string, number>>({});
@@ -68,17 +69,29 @@ export function FavoritesScreen() {
 
       if (announcements.length > 0) {
         const ids = announcements.map((a) => a.id);
-        const { data: bookingsData } = await supabase
-          .from('booking_requests')
-          .select('announcement_id, requested_kilos')
-          .in('announcement_id', ids)
-          .in('status', ['pending', 'approved']);
+        const userIds = [...new Set(announcements.map((a) => a.user_id))];
+
+        const [bookingsResult, verifiedResult] = await Promise.all([
+          supabase
+            .from('booking_requests')
+            .select('announcement_id, requested_kilos')
+            .in('announcement_id', ids)
+            .in('status', ['pending', 'approved']),
+          supabase
+            .from('identity_documents')
+            .select('user_id')
+            .in('user_id', userIds)
+            .eq('status', 'approved'),
+        ]);
 
         const booked: Record<string, number> = {};
-        bookingsData?.forEach((b) => {
+        bookingsResult.data?.forEach((b) => {
           booked[b.announcement_id] = (booked[b.announcement_id] || 0) + Number(b.requested_kilos);
         });
         setBookedKilos(booked);
+
+        const verifiedSet = new Set(verifiedResult.data?.map((d) => d.user_id) || []);
+        setVerifiedUsers(verifiedSet);
       }
     } catch (err) {
       console.error('Error loading favorites:', err);
@@ -171,13 +184,20 @@ export function FavoritesScreen() {
 
         <View style={styles.cardFooter}>
           <View style={styles.travelerRow}>
-            {item.profiles?.avatar_url ? (
-              <Image source={{ uri: item.profiles.avatar_url }} style={styles.avatar} />
-            ) : (
-              <View style={styles.avatarPlaceholder}>
-                <Ionicons name="person" size={12} color={colors.white} />
-              </View>
-            )}
+            <View style={styles.avatarContainer}>
+              {item.profiles?.avatar_url ? (
+                <Image source={{ uri: item.profiles.avatar_url }} style={styles.avatar} />
+              ) : (
+                <View style={styles.avatarPlaceholder}>
+                  <Ionicons name="person" size={12} color={colors.white} />
+                </View>
+              )}
+              {verifiedUsers.has(item.user_id) && (
+                <View style={styles.verifiedBadge}>
+                  <Ionicons name="shield-checkmark" size={10} color={colors.white} />
+                </View>
+              )}
+            </View>
             <Text style={styles.travelerName}>{getTravelerName(item.profiles)}</Text>
           </View>
           <Text style={styles.price}>{item.price_per_kg}€/kg</Text>
@@ -366,6 +386,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
+  avatarContainer: {
+    position: 'relative',
+  },
   avatar: {
     width: 28,
     height: 28,
@@ -378,6 +401,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  verifiedBadge: {
+    position: 'absolute',
+    bottom: -2,
+    right: -2,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: colors.green600,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: colors.white,
   },
   travelerName: {
     fontSize: 13,

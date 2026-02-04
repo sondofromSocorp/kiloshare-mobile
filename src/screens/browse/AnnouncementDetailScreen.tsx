@@ -36,6 +36,7 @@ export function AnnouncementDetailScreen() {
   const { announcementId } = route.params;
 
   const [announcement, setAnnouncement] = useState<AnnouncementWithProfile | null>(null);
+  const [isUserVerified, setIsUserVerified] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -57,7 +58,19 @@ export function AnnouncementDetailScreen() {
         .single();
 
       if (fetchError) throw fetchError;
-      setAnnouncement(data as AnnouncementWithProfile);
+      const ann = data as AnnouncementWithProfile;
+      setAnnouncement(ann);
+
+      // Check if traveler is verified
+      const { data: idDoc } = await supabase
+        .from('identity_documents')
+        .select('status')
+        .eq('user_id', ann.user_id)
+        .eq('status', 'approved')
+        .limit(1)
+        .maybeSingle();
+
+      setIsUserVerified(idDoc?.status === 'approved');
     } catch {
       setError(t('announcements.errors.loadFailed'));
     } finally {
@@ -229,16 +242,23 @@ export function AnnouncementDetailScreen() {
         activeOpacity={0.7}
       >
         <View style={styles.travelerInfo}>
-          {announcement.profiles?.avatar_url ? (
-            <Image
-              source={{ uri: announcement.profiles.avatar_url }}
-              style={styles.avatarImage}
-            />
-          ) : (
-            <View style={styles.avatarPlaceholder}>
-              <Ionicons name="person" size={20} color={colors.white} />
-            </View>
-          )}
+          <View style={styles.avatarContainer}>
+            {announcement.profiles?.avatar_url ? (
+              <Image
+                source={{ uri: announcement.profiles.avatar_url }}
+                style={styles.avatarImage}
+              />
+            ) : (
+              <View style={styles.avatarPlaceholder}>
+                <Ionicons name="person" size={20} color={colors.white} />
+              </View>
+            )}
+            {isUserVerified && (
+              <View style={styles.verifiedBadge}>
+                <Ionicons name="shield-checkmark" size={12} color={colors.white} />
+              </View>
+            )}
+          </View>
           <View>
             <Text style={styles.travelerLabel}>{t('announcements.traveler')}</Text>
             <Text style={styles.travelerName}>{travelerName}</Text>
@@ -522,6 +542,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
+  avatarContainer: {
+    position: 'relative',
+  },
   avatarPlaceholder: {
     width: 40,
     height: 40,
@@ -534,6 +557,19 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
+  },
+  verifiedBadge: {
+    position: 'absolute',
+    bottom: -2,
+    right: -2,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: colors.green600,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: colors.white,
   },
   travelerLabel: {
     fontSize: 12,
