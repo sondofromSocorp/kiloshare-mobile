@@ -40,6 +40,7 @@ export function ProfileScreen() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [role, setRole] = useState('new');
   const [rating, setRating] = useState({ average: 0, count: 0 });
+  const [isVerified, setIsVerified] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const loadProfile = useCallback(async () => {
@@ -53,12 +54,20 @@ export function ProfileScreen() {
 
       if (data) setProfile(data as Profile);
 
-      const [userRole, userRating] = await Promise.all([
+      const [userRole, userRating, idDoc] = await Promise.all([
         fetchUserRole(user.id),
         fetchUserAverageRating(user.id),
+        supabase
+          .from('identity_documents')
+          .select('status')
+          .eq('user_id', user.id)
+          .eq('status', 'approved')
+          .limit(1)
+          .maybeSingle(),
       ]);
       setRole(userRole);
       setRating(userRating);
+      setIsVerified(idDoc.data?.status === 'approved');
     } catch {
       // silently fail
     } finally {
@@ -112,7 +121,7 @@ export function ProfileScreen() {
                 <Ionicons name="person" size={36} color={colors.white} />
               </View>
             )}
-            {profile?.identity_verified && (
+            {isVerified && (
               <View style={styles.verifiedBadge}>
                 <Ionicons name="shield-checkmark" size={16} color={colors.white} />
               </View>
