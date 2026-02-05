@@ -114,6 +114,8 @@ export interface Database {
           handoff_step: HandoffStep;
           delivery_code: string | null;
           message: string | null;
+          legal_accepted: boolean;
+          legal_accepted_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -126,6 +128,8 @@ export interface Database {
           handoff_step?: HandoffStep;
           delivery_code?: string | null;
           message?: string | null;
+          legal_accepted?: boolean;
+          legal_accepted_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -138,6 +142,8 @@ export interface Database {
           handoff_step?: HandoffStep;
           delivery_code?: string | null;
           message?: string | null;
+          legal_accepted?: boolean;
+          legal_accepted_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };

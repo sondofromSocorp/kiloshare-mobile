@@ -18,6 +18,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors } from '../../theme/colors';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../lib/auth';
+import { useFavorites } from '../../hooks/useFavorites';
 import type { Announcement, Profile, BookingRequest } from '../../lib/types';
 import type { BrowseStackParamList } from '../../navigation/BrowseStack';
 
@@ -34,11 +35,13 @@ export function AnnouncementDetailScreen() {
   const navigation = useNavigation<NavigationProp>();
   const { user } = useAuth();
   const { announcementId } = route.params;
+  const { isFavorite, toggleFavorite } = useFavorites(user?.id);
 
   const [announcement, setAnnouncement] = useState<AnnouncementWithProfile | null>(null);
   const [isUserVerified, setIsUserVerified] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [togglingFavorite, setTogglingFavorite] = useState(false);
 
   // Booking form
   const [showBookingForm, setShowBookingForm] = useState(false);
@@ -125,14 +128,41 @@ export function AnnouncementDetailScreen() {
 
     setSubmitting(true);
     try {
-      const { error: insertError } = await supabase.from('booking_requests').insert({
-        user_id: user.id,
-        announcement_id: announcement.id,
-        requested_kilos: kilos,
-        message: bookingMessage.trim() || null,
-      });
+      const { data: insertedBooking, error: insertError } = await supabase
+        .from('booking_requests')
+        .insert({
+          user_id: user.id,
+          announcement_id: announcement.id,
+          requested_kilos: kilos,
+          message: bookingMessage.trim() || null,
+          legal_accepted: true,
+          legal_accepted_at: new Date().toISOString(),
+        })
+        .select('id')
+        .single();
 
       if (insertError) throw insertError;
+
+      // Get sender's name for the notification
+      const { data: senderProfile } = await supabase
+        .from('profiles')
+        .select('first_name, last_name')
+        .eq('id', user.id)
+        .single();
+
+      const senderName = [senderProfile?.first_name, senderProfile?.last_name]
+        .filter(Boolean)
+        .join(' ') || 'Un utilisateur';
+
+      // Send notification to traveler (non-blocking)
+      supabase.functions.invoke('send-booking-notification', {
+        body: {
+          booking_request_id: insertedBooking.id,
+          announcement_id: announcement.id,
+          requested_kilos: kilos,
+          sender_name: senderName,
+        },
+      }).catch((err) => console.warn('Notification failed:', err));
 
       Alert.alert(t('common.success'), t('bookingRequest.title'));
       setShowBookingForm(false);
@@ -149,6 +179,14 @@ export function AnnouncementDetailScreen() {
 
   const isOwnAnnouncement = user?.id === announcement?.user_id;
   const totalPrice = parseFloat(requestedKilos) * (announcement?.price_per_kg ?? 0);
+  const isAnnouncementFavorite = announcement ? isFavorite(announcement.id) : false;
+
+  const handleToggleFavorite = async () => {
+    if (!user || !announcement) return;
+    setTogglingFavorite(true);
+    await toggleFavorite(announcement.id);
+    setTogglingFavorite(false);
+  };
 
   if (loading) {
     return (
@@ -266,6 +304,29 @@ export function AnnouncementDetailScreen() {
         </View>
         <Ionicons name="chevron-forward" size={20} color={colors.gray400} />
       </TouchableOpacity>
+
+      {/* Favorite button */}
+      {user && !isOwnAnnouncement && (
+        <TouchableOpacity
+          style={[styles.favoriteCard, isAnnouncementFavorite && styles.favoriteCardActive]}
+          onPress={handleToggleFavorite}
+          disabled={togglingFavorite}
+          activeOpacity={0.7}
+        >
+          {togglingFavorite ? (
+            <ActivityIndicator size="small" color={isAnnouncementFavorite ? colors.red500 : colors.gray500} />
+          ) : (
+            <Ionicons
+              name={isAnnouncementFavorite ? 'heart' : 'heart-outline'}
+              size={20}
+              color={isAnnouncementFavorite ? colors.red500 : colors.gray500}
+            />
+          )}
+          <Text style={[styles.favoriteText, isAnnouncementFavorite && styles.favoriteTextActive]}>
+            {isAnnouncementFavorite ? t('announcements.removeFavorite') : t('announcements.addFavorite')}
+          </Text>
+        </TouchableOpacity>
+      )}
 
       {/* Booking section */}
       {!isOwnAnnouncement && (
@@ -579,6 +640,32 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
     color: colors.gray900,
+  },
+
+  // Favorite button
+  favoriteCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.white,
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 12,
+    gap: 8,
+    borderWidth: 1,
+    borderColor: colors.gray200,
+  },
+  favoriteCardActive: {
+    backgroundColor: colors.red50,
+    borderColor: colors.red500,
+  },
+  favoriteText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.gray600,
+  },
+  favoriteTextActive: {
+    color: colors.red600,
   },
 
   // Booking section

@@ -188,6 +188,14 @@ export async function confirmHandoff(
     if (msgError) throw msgError;
   }
 
+  // Send notification for handoff step (non-blocking)
+  supabase.functions.invoke('send-handoff-notification', {
+    body: {
+      booking_request_id: bookingRequestId,
+      step,
+    },
+  }).catch((err) => console.warn('Handoff notification failed:', err));
+
   return deliveryCode;
 }
 
@@ -234,6 +242,14 @@ export async function validateDeliveryCode(
       });
 
     if (msgError) throw msgError;
+
+    // Send notification for delivery confirmation (non-blocking)
+    supabase.functions.invoke('send-handoff-notification', {
+      body: {
+        booking_request_id: bookingRequestId,
+        step: 'delivered',
+      },
+    }).catch((err) => console.warn('Delivery notification failed:', err));
 
     return true;
   }
